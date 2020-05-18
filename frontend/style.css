@@ -1,3 +1,45 @@
 h1 {
     color: red;
 }
+
+#container {
+    display: flex;
+    width: 700px;
+    height: 400px;
+    flex-direction: column;
+    align-content: space-between;
+    align-items: center;
+}
+
+#slot {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+    border: solid 3px black;
+}
+
+.reels {
+    width: 32%;
+    height: 90%;
+    margin: 1em;
+    display: flex;
+    border: solid 1px black;
+}
+
+img {
+    margin: 5px;
+    max-width: 90%;
+    max-height: auto;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+}
+
+button {
+    font-size: 24px;
+    margin: 5px auto;
+    
+}
