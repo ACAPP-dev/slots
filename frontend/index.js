@@ -24,21 +24,40 @@ console.log("Hello Slot Player!")
 btnSpin.addEventListener('click', spin)
 
 function spin() {
-    console.log('Spin!!')
-    for (let i=0; i<3; i++) {
-    selectImg1()
-    selectImg2()
+    console.log('Spin Button Pressed!!')
+    
+
+    // debugger
+    // selectImg1()
+    spinInterval(()=>{
+        setTimeout(()=>selectImg1(), 500)
+        setTimeout(()=>selectImg2(), 1000)
+    }, 1500, 4)
 
     }
+
+
+function spinInterval(callback, delay, repetitions) {
+    let reps = 0
+    let intervalID = window.setInterval(()=>{
+        callback()
+
+        if (++reps === repetitions) {
+            window.clearInterval(intervalID)
+        }
+    }, delay)
 }
 
 function selectImg1() {
     console.log(reel1Img)
-    setTimeout(() => {reel1Img.src = 'images/bar.png'}, 1000)
-    
-   
+    reel1.removeChild(reel1Img)
+    reel1Img.src = 'images/bar.png'
+    reel1.appendChild(reel1Img)  
 }
 
 function selectImg2() {
-    setTimeout(() => {reel1Img.src = 'images/seven.png'}, 1000)
+    console.log(reel1Img)
+    reel1.removeChild(reel1Img)
+    reel1Img.src = 'images/seven.png'
+    reel1.appendChild(reel1Img)
 }
