@@ -80,21 +80,18 @@ function spinInterval(callback, delay, repetitions) {
 
 function selectImg1() {
     reel1Img = reel1.querySelector('img')
-    console.log(reel1Img)
     reel1.removeChild(reel1Img)
     reel1Img = imgBar.element
     reel1Img.classList.add('img-spin')
     reel1.appendChild(reel1Img)  
 
     reel2Img = reel2.querySelector('img')
-    console.log(reel2Img)
     reel2.removeChild(reel2Img)
     reel2Img = imgBar.element
     reel2Img.classList.add('img-spin')
     reel2.appendChild(reel2Img)  
 
     reel3Img = reel3.querySelector('img')
-    console.log(reel3Img)
     reel3.removeChild(reel3Img)
     reel3Img = imgBar.element
     reel3Img.classList.add('img-spin')
@@ -103,29 +100,20 @@ function selectImg1() {
 
 function selectImg2() {
     reel1Img = reel1.querySelector('img')
-    console.log(reel1Img)
     reel1.removeChild(reel1Img)
     reel1Img = imgSeven.element
     reel1Img.classList.add('img-spin')
     reel1.appendChild(reel1Img)
 
     reel2Img = reel2.querySelector('img')
-    console.log(reel2Img)
     reel2.removeChild(reel2Img)
     reel2Img = imgSeven.element
     reel2Img.classList.add('img-spin')
     reel2.appendChild(reel2Img)  
 
     reel3Img = reel3.querySelector('img')
-    console.log(reel3Img)
     reel3.removeChild(reel3Img)
     reel3Img = imgSeven.element
     reel3Img.classList.add('img-spin')
     reel3.appendChild(reel3Img)  
-
-
-
-
-
-
 }

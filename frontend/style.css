@@ -19,7 +19,7 @@ h1 {
     align-content: space-between;
     align-items: center;
     border: solid 3px black;
-    background-color: white;
+    background-color: lightsteelblue;
     z-index: 1;
     overflow: hidden;
 }
@@ -29,15 +29,18 @@ h1 {
     height: 90%;
     margin: 1em;
     display: flex;
-    border: solid 1px black;
+    background-color: white;
+    border: solid 4px silver;
+    border-style: ridge;
     overflow: hidden;
 }
 
 img {
     position: relative;
     /* top: 90px; */
-    margin: 5px;
-    width: 122px;
+    margin: 1em;
+    object-fit: contain;
+    max-width: 75%;
     max-height: auto;
     align-items: center;
     
@@ -48,8 +51,9 @@ img {
 .img-spin {
     position: relative;
     top: 90px;
-    margin: 5px;
-    width: 122px;
+    margin: 1em;
+    object-fit: contain;
+    max-width: 75%;
     max-height: auto;
     align-items: center;
     z-index: -1;
@@ -59,6 +63,9 @@ img {
 }
 
 /* code for image spin animation (see w3schools) */
+
+/* use css transform properties for 3D instead?? */
+
 @keyframes spin {
     0% {top: -150px;}
     10% {top: -50px;}
