@@ -19,6 +19,9 @@ h1 {
     align-content: space-between;
     align-items: center;
     border: solid 3px black;
+    background-color: white;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .reels {
@@ -27,15 +30,47 @@ h1 {
     margin: 1em;
     display: flex;
     border: solid 1px black;
+    overflow: hidden;
 }
 
 img {
+    position: relative;
+    /* top: 90px; */
     margin: 5px;
-    max-width: 90%;
+    width: 122px;
     max-height: auto;
     align-items: center;
-    justify-content: center;
-    object-fit: contain;
+    
+    /* justify-content: center; */
+    /* object-fit: contain; */
+}
+
+.img-spin {
+    position: relative;
+    top: 90px;
+    margin: 5px;
+    width: 122px;
+    max-height: auto;
+    align-items: center;
+    z-index: -1;
+    overflow: hidden;
+    animation-name: spin;
+    animation-duration: .5s;
+}
+
+/* code for image spin animation (see w3schools) */
+@keyframes spin {
+    0% {top: -150px;}
+    10% {top: -50px;}
+    20% {top: 25px;}
+    30% {top: 75px;}
+    40% {top: 125px;}
+    50% {top: 175px;}
+    60% {top: 225px;}
+    70% {top: 275px;}
+    80% {top: 325px;}
+    90% {top: 375px;}
+    100% {top: 425px;}
 }
 
 button {
