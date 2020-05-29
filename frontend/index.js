@@ -1,5 +1,5 @@
 const container = document.getElementById('container')
-const btnSpin = document.getElementById('spin')
+const btnSpin = document.getElementById('spin-button')
 const reel1 = document.getElementById('reel-1')
 const reel2 = document.getElementById('reel-2')
 const reel3 = document.getElementById('reel-3')
