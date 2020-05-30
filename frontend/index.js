@@ -65,9 +65,9 @@ btnSpin.addEventListener('click', spin)
 function spin() {
     console.log('Spin Button Pressed!!')
     spinInterval(()=>{
-        setTimeout(()=>selectImg1(), 250)
-        setTimeout(()=>selectImg2(), 500)
-    }, 750, 5)   
+        setTimeout(()=>selectImg1(), 1100)
+        setTimeout(()=>selectImg2(), 1100)
+    }, 2300, 5)   
 }
 
 function spinInterval(callback, delay, repetitions) {
