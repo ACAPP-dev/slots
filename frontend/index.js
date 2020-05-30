@@ -7,6 +7,9 @@ const reel3 = document.getElementById('reel-3')
 let reel1Img = reel1.querySelector('img')
 let reel2Img = reel2.querySelector('img')
 let reel3Img = reel3.querySelector('img')
+
+const playerMessageDiv = document.getElementById('messages')
+
 // const slotSeven = document.createElement('img')
 
 // Define image object (each reel image will be an instance)
@@ -51,11 +54,11 @@ reel3.appendChild(imgSeven.element)
 // slotBar.src = 'images/bar.png'
 // console.log(slotBar)
 
-const greeting = document.createElement('h2')
+const greeting = document.createElement('p')
+greeting.classList.add('message-text')
 greeting.innerText = 'Hello Slot Player!'
+playerMessageDiv.appendChild(greeting)
 
-container.appendChild(greeting)
-console.log("Hello Slot Player!")
 
 btnSpin.addEventListener('click', spin)
 

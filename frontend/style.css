@@ -109,10 +109,18 @@ img {
 
 }
 
-.bottom-divs{
+.bottom-divs-row1{
     height: 120px;
     border: solid 1px black;
 
+}
+
+.bottom-divs-row2{
+    height: 35px;
+    /* margin: auto; */
+    border: solid 1px black;
+  
+    
 }
 
 #display-balance {
@@ -144,5 +152,11 @@ img {
 }
 
 #payout-button-div {
-    height: 35px;
+    
+}
+
+#message-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
