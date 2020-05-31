@@ -1,7 +1,10 @@
 
 // Event listener to run after html is parsed
 
-document.addEventListener('DOMContentLoaded', {
+document.addEventListener('DOMContentLoaded', () => {
+
+const fetchImagesURL = 'http://localhost:3000/images'
+const IMAGES = []
 
 const container = document.getElementById('container')
 const btnSpin = document.getElementById('spin-button')
@@ -15,15 +18,25 @@ let reel3Img = reel3.querySelector('img')
 
 const playerMessageDiv = document.getElementById('messages')
 
-}
+fetchImages()
+
+
 
 // Define image object (each reel image will be an instance)
 
 class ReelImage {
+    
+
     constructor(imageID, name, source) {
         this.imageID = imageID
         this.name = name
-        this.source = source
+        this.source = `images/${source}`
+        // debugger
+        ReelImage.addImage(this)
+    }
+
+    static addImage(instance) {
+        IMAGES.push(instance)
     }
 
     get element() {
@@ -34,7 +47,36 @@ class ReelImage {
  
 }
 
-// Fetch images from database
+// Fetch images from database function & create instances
+
+function fetchImages() {
+    fetch(fetchImagesURL)
+    .then(resp => resp.json())
+    .then(json => {
+        console.log(json)
+        createImages(json)
+    })
+}
+
+function createImages(json) {
+    json.forEach(image => {
+        new ReelImage(image['id'], image['name'], image['source'])
+    });
+    console.log(IMAGES)
+}
+
+// Define function to generate random numbers for reels
+
+function generateRandom() {
+    let max = IMAGES.length + 1
+    return Math.floor(Math.random() * Math.floor(max))
+}
+
+// Need to fix - not working...
+
+console.log(generateRandom())
+console.log(generateRandom())
+console.log(generateRandom())
 
 
 
@@ -42,18 +84,13 @@ class ReelImage {
 
 
 
+// Need to select initial image to display on slot machine
 
+// reel1.appendChild(imgSeven.element)
 
+// reel2.appendChild(imgBar.element)
 
-const imgSeven = new ReelImage('images/seven.png', 1)
-console.log(imgSeven)
-reel1.appendChild(imgSeven.element)
-
-const imgBar = new ReelImage('images/bar.png', 1)
-console.log(imgBar)
-reel2.appendChild(imgBar.element)
-
-reel3.appendChild(imgSeven.element)
+// reel3.appendChild(imgSeven.element)
 
 const greeting = document.createElement('p')
 greeting.classList.add('message-text')
@@ -120,3 +157,6 @@ function selectImg2() {
     // reel3Img.classList.add('img-spin')
     // reel3.appendChild(reel3Img)  
 }
+
+
+})
