@@ -12,9 +12,15 @@ const reel1 = document.getElementById('reel-1')
 const reel2 = document.getElementById('reel-2')
 const reel3 = document.getElementById('reel-3')
 
+const img = document.createElement('img')
+const reelArry = [reel1, reel2, reel3]
+
 let reel1Img = reel1.querySelector('img')
 let reel2Img = reel2.querySelector('img')
 let reel3Img = reel3.querySelector('img')
+let reel1Selection = 0
+let reel2Selection = 0
+let reel3Selection = 0
 
 const playerMessageDiv = document.getElementById('messages')
 
@@ -63,20 +69,28 @@ function createImages(json) {
         new ReelImage(image['id'], image['name'], image['source'])
     });
     console.log(IMAGES)
+    // invoke function to display initial images on reels
+    displayImages()
 }
 
 // Define function to generate random numbers for reels
 
 function generateRandom() {
-    let max = IMAGES.length + 1
+    const max = IMAGES.length
+    // debugger
     return Math.floor(Math.random() * Math.floor(max))
 }
 
-// Need to fix - not working...
+function displayImages() {
+    // Display initial image on reels
+    for (let i=0; i<3; i++) {
+        const img = document.createElement('img')
+        img.src = IMAGES[generateRandom()].source
+        reelArry[i].appendChild(img)
+    }
 
-console.log(generateRandom())
-console.log(generateRandom())
-console.log(generateRandom())
+}
+
 
 
 
