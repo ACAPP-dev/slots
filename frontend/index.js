@@ -1,3 +1,8 @@
+
+// Event listener to run after html is parsed
+
+document.addEventListener('DOMContentLoaded', {
+
 const container = document.getElementById('container')
 const btnSpin = document.getElementById('spin-button')
 const reel1 = document.getElementById('reel-1')
@@ -10,12 +15,15 @@ let reel3Img = reel3.querySelector('img')
 
 const playerMessageDiv = document.getElementById('messages')
 
+}
+
 // Define image object (each reel image will be an instance)
 
 class ReelImage {
-    constructor(source, position) {
+    constructor(imageID, name, source) {
+        this.imageID = imageID
+        this.name = name
         this.source = source
-        this.position = position  
     }
 
     get element() {
@@ -23,9 +31,19 @@ class ReelImage {
         img.src = this.source
         return img
     }
-
-    
+ 
 }
+
+// Fetch images from database
+
+
+
+
+
+
+
+
+
 
 const imgSeven = new ReelImage('images/seven.png', 1)
 console.log(imgSeven)
