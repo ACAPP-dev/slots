@@ -105,14 +105,13 @@ function spinStart() {
     console.log(`WinImage1 = ${winImg1}`)
 
     // Spin reel 1 (0 in array)
-    
-        spin(0, winImg1)
-       
-   
+    spinInterval(()=>spin(0, winImg1), 190 * IMAGES.length, 3)
 
     // Spin reel 2
+    spinInterval(()=>spin(1, winImg2), 190 * IMAGES.length, 4)
 
     // Spin reel 3
+    spinInterval(()=>spin(2, winImg3), 190 * IMAGES.length, 5)
 }
 
 // setTimeout(()=>selectImg1(), 0)
@@ -140,15 +139,15 @@ function spin(reel, winImage) {
 
     for (let i = 0; i<IMAGES.length; i++) {
         window.setTimeout(()=> {
-            console.log(`Reel 1 image selected: ${IMAGES[i].source}`)
+            
             const reelImg = currentReel.querySelector('img')
             currentReel.removeChild(reelImg)
             // debugger
             reelImg.src = IMAGES[i].source
             // reel1Img.classList.add('img-spin')
             currentReel.appendChild(reelImg)
-            console.log(reelImg)
-        }, i*500)        
+            
+        }, i*200)        
 
     }
 
