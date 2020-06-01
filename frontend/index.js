@@ -95,13 +95,21 @@ greeting.classList.add('message-text')
 greeting.innerText = 'Hello Slot Player!'
 playerMessageDiv.appendChild(greeting)
 
-btnSpin.addEventListener('click', spin)
+btnSpin.addEventListener('click', spinStart)
 
-function spin() {
-    // Spin reel 1
-    spinInterval(spinSelection()
-    
-         500)1000, 5)   
+function spinStart() {
+    // Select images
+    const winImg1 = IMAGES[generateRandom()]
+    const winImg2 = IMAGES[generateRandom()]
+    const winImg3 = IMAGES[generateRandom()]
+
+    // Spin reel 1 (0 in array)
+    spinInterval(() => {
+        spin(0, winImg1)
+        console.log(winImg1)
+        
+        
+    }, 1000, 5)   
 
     // Spin reel 2
 
@@ -121,9 +129,19 @@ function spinInterval(callback, delay, repetitions) {
     }, delay)
 }
 
-function spinSelection() {
+function spin(reel, winImage) {
+    const currentReel = reelArry[reel]
 
+    for (const img of IMAGES) {
+        debugger
+        const reelImg = currentReel.querySelector('img')
+        currentReel.removeChild(reelImg)
+        reelImg.src = img.source
+        // reel1Img.classList.add('img-spin')
+        currentReel.appendChild(reelImg)
+    }
 
+    
 
 }
 
