@@ -12,12 +12,11 @@ const reel1 = document.getElementById('reel-1')
 const reel2 = document.getElementById('reel-2')
 const reel3 = document.getElementById('reel-3')
 
-let reel1InitialImg
-let reel2InitialImg
-let reel3InitialImg
+const reelArry = [reel1, reel2, reel3]
+const InitialImgArry = []
 
 const img = document.createElement('img')
-const reelArry = [reel1, reel2, reel3]
+
 
 let reel1Img = reel1.querySelector('img')
 let reel2Img = reel2.querySelector('img')
@@ -88,8 +87,8 @@ function displayImages() {
     // Display initial image on reels
     for (let i=0; i<3; i++) {
         const img = document.createElement('img')
-        reel1InitialImg = IMAGES[generateRandom()]
-        img.src = reel1InitialImg.source
+        InitialImgArry.push(IMAGES[generateRandom()])
+        img.src = InitialImgArry[i].source
         reelArry[i].appendChild(img)
     }
 
@@ -110,7 +109,7 @@ function spinStart() {
     console.log(`WinImage1 = ${winImg1}`)
 
     // Spin reel 1 (0 in array)
-    spinInterval(()=>spin(0, winImg1), 190 * IMAGES.length, 3)
+    spinInterval(()=>spin(0, winImg1, InitialImgArry[0]), 190 * IMAGES.length, 3)
 
     // Spin reel 2
     // spinInterval(()=>spin(1, winImg2), 190 * IMAGES.length, 4)
@@ -138,9 +137,9 @@ function spinInterval(callback, delay, repetitions) {
 // loop through images with delay between each image
 // stop on winning image after specified number of loops
 
-function spin(reel, winImage) {
+function spin(reel, winImage, initialImage) {
     const currentReel = reelArry[reel]
-    let index = IMAGES.findIndex((image) => image.source === reel1InitialImg.source)
+    let index = IMAGES.findIndex((image) => image.source === initialImage.source)
     console.log(index)
     for (let i=index; i<IMAGES.length; i++) {
         window.setTimeout(()=> {
