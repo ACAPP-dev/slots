@@ -59,7 +59,6 @@ function fetchImages() {
     fetch(fetchImagesURL)
     .then(resp => resp.json())
     .then(json => {
-        console.log(json)
         createImages(json)
     })
 }
@@ -91,21 +90,6 @@ function displayImages() {
 
 }
 
-
-
-
-
-
-
-
-// Need to select initial image to display on slot machine
-
-// reel1.appendChild(imgSeven.element)
-
-// reel2.appendChild(imgBar.element)
-
-// reel3.appendChild(imgSeven.element)
-
 const greeting = document.createElement('p')
 greeting.classList.add('message-text')
 greeting.innerText = 'Hello Slot Player!'
@@ -114,13 +98,18 @@ playerMessageDiv.appendChild(greeting)
 btnSpin.addEventListener('click', spin)
 
 function spin() {
-    console.log('Spin Button Pressed!!')
-    spinInterval(()=>{
-        setTimeout(()=>selectImg1(), 0)
-        setTimeout(()=>selectImg2(), 500)
-    }, 1000, 5)   
+    // Spin reel 1
+    spinInterval(spinSelection()
+    
+         500)1000, 5)   
+
+    // Spin reel 2
+
+    // Spin reel 3
 }
 
+// setTimeout(()=>selectImg1(), 0)
+        
 function spinInterval(callback, delay, repetitions) {
     let reps = 0
     let intervalID = window.setInterval(()=>{
@@ -132,45 +121,54 @@ function spinInterval(callback, delay, repetitions) {
     }, delay)
 }
 
-function selectImg1() {
-    reel1Img = reel1.querySelector('img')
-    reel1.removeChild(reel1Img)
-    reel1Img = imgBar.element
-    // reel1Img.classList.add('img-spin')
-    reel1.appendChild(reel1Img)  
+function spinSelection() {
 
-    // reel2Img = reel2.querySelector('img')
-    // reel2.removeChild(reel2Img)
-    // reel2Img = imgBar.element
-    // reel2Img.classList.add('img-spin')
-    // reel2.appendChild(reel2Img)  
 
-    // reel3Img = reel3.querySelector('img')
-    // reel3.removeChild(reel3Img)
-    // reel3Img = imgBar.element
-    // reel3Img.classList.add('img-spin')
-    // reel3.appendChild(reel3Img)  
+
 }
 
-function selectImg2() {
-    reel1Img = reel1.querySelector('img')
-    reel1.removeChild(reel1Img)
-    reel1Img = imgSeven.element
-    // reel1Img.classList.add('img-spin')
-    reel1.appendChild(reel1Img)
 
-    // reel2Img = reel2.querySelector('img')
-    // reel2.removeChild(reel2Img)
-    // reel2Img = imgSeven.element
-    // reel2Img.classList.add('img-spin')
-    // reel2.appendChild(reel2Img)  
 
-    // reel3Img = reel3.querySelector('img')
-    // reel3.removeChild(reel3Img)
-    // reel3Img = imgSeven.element
-    // reel3Img.classList.add('img-spin')
-    // reel3.appendChild(reel3Img)  
-}
+
+// function selectImg1() {
+//     reel1Img = reel1.querySelector('img')
+//     reel1.removeChild(reel1Img)
+//     reel1Img = imgBar.element
+//     // reel1Img.classList.add('img-spin')
+//     reel1.appendChild(reel1Img)  
+
+//     // reel2Img = reel2.querySelector('img')
+//     // reel2.removeChild(reel2Img)
+//     // reel2Img = imgBar.element
+//     // reel2Img.classList.add('img-spin')
+//     // reel2.appendChild(reel2Img)  
+
+//     // reel3Img = reel3.querySelector('img')
+//     // reel3.removeChild(reel3Img)
+//     // reel3Img = imgBar.element
+//     // reel3Img.classList.add('img-spin')
+//     // reel3.appendChild(reel3Img)  
+// }
+
+// function selectImg2() {
+//     reel1Img = reel1.querySelector('img')
+//     reel1.removeChild(reel1Img)
+//     reel1Img = imgSeven.element
+//     // reel1Img.classList.add('img-spin')
+//     reel1.appendChild(reel1Img)
+
+//     // reel2Img = reel2.querySelector('img')
+//     // reel2.removeChild(reel2Img)
+//     // reel2Img = imgSeven.element
+//     // reel2Img.classList.add('img-spin')
+//     // reel2.appendChild(reel2Img)  
+
+//     // reel3Img = reel3.querySelector('img')
+//     // reel3.removeChild(reel3Img)
+//     // reel3Img = imgSeven.element
+//     // reel3Img.classList.add('img-spin')
+//     // reel3.appendChild(reel3Img)  
+// }
 
 
 })
