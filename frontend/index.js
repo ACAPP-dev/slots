@@ -102,14 +102,13 @@ function spinStart() {
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
+    console.log(`WinImage1 = ${winImg1}`)
 
     // Spin reel 1 (0 in array)
-    spinInterval(() => {
+    
         spin(0, winImg1)
-        console.log(winImg1)
-        
-        
-    }, 1000, 5)   
+       
+   
 
     // Spin reel 2
 
@@ -129,16 +128,28 @@ function spinInterval(callback, delay, repetitions) {
     }, delay)
 }
 
+// Spin Steps - reel 1
+// determine winning image
+// determine starting image
+// loop through images with delay between each image
+// stop on winning image after specified number of loops
+
 function spin(reel, winImage) {
     const currentReel = reelArry[reel]
+    
 
-    for (const img of IMAGES) {
-        debugger
-        const reelImg = currentReel.querySelector('img')
-        currentReel.removeChild(reelImg)
-        reelImg.src = img.source
-        // reel1Img.classList.add('img-spin')
-        currentReel.appendChild(reelImg)
+    for (let i = 0; i<IMAGES.length; i++) {
+        window.setTimeout(()=> {
+            console.log(`Reel 1 image selected: ${IMAGES[i].source}`)
+            const reelImg = currentReel.querySelector('img')
+            currentReel.removeChild(reelImg)
+            // debugger
+            reelImg.src = IMAGES[i].source
+            // reel1Img.classList.add('img-spin')
+            currentReel.appendChild(reelImg)
+            console.log(reelImg)
+        }, i*500)        
+
     }
 
     
