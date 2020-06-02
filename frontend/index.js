@@ -13,7 +13,7 @@ const reel2 = document.getElementById('reel-2')
 const reel3 = document.getElementById('reel-3')
 
 const reelArry = [reel1, reel2, reel3]
-const InitialImgArry = []
+const initialImgArry = []
 
 const img = document.createElement('img')
 
@@ -86,8 +86,8 @@ function displayImages() {
     // Display initial image on reels
     for (let i=0; i<3; i++) {
         const img = document.createElement('img')
-        InitialImgArry.push(IMAGES[generateRandom()])
-        img.src = InitialImgArry[i].source
+        initialImgArry.push(IMAGES[generateRandom()])
+        img.src = initialImgArry[i].source
         reelArry[i].appendChild(img)
     }
 
@@ -98,16 +98,24 @@ greeting.classList.add('message-text')
 greeting.innerText = 'Hello Slot Player!'
 playerMessageDiv.appendChild(greeting)
 
+// Spin functionality below
+
 btnSpin.addEventListener('click', spinStart)
 
 function spinStart() {
-    // Select images
+    // Select final image for each reel
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
 
+    // Generate array of images to be displayed in succession for each reel
+    
+    const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 3)
+
+
+
     // Spin reel 1 (0 in array) (arguments: reel#, finalImg, initialImg, #spins)
-    initialSpin(0, winImg1, InitialImgArry[0], 3)
+    // initialSpin(0, winImg1, InitialImgArry[0], 3)
     
     
     // Spin reel 2
@@ -120,7 +128,19 @@ function spinStart() {
 }
 
 // setTimeout(()=>selectImg1(), 0)
-        
+
+function createSpinArry(initialImage, winImage, spins) {
+    const initialIndex = IMAGES.findIndex((image) => image.source === initialImage.source)
+    const finalIndex = IMAGES.findIndex((image) => image.source === winImage.source)
+    console.log(initialImage.source)
+    console.log(winImage.source)
+    const returnArry = IMAGES.slice(initialIndex).concat( 
+        IMAGES, IMAGES, IMAGES.slice(0, finalIndex))
+    debugger
+
+}
+
+
 function spinInterval(callback, delay, reel, winImage, spins) {
     let reps = 0
     let intervalID = window.setInterval(()=> {
