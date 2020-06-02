@@ -6,21 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
 const fetchImagesURL = 'http://localhost:3000/images'
 
 const IMAGES = []
-const winObject = {
-    '6 6 7': 3,
-    '6 6 8': 3,
-    '6 7 7': 3,
-    '6 7 8': 3,
-    '6 8 8': 3,
-    '7 7 8': 3,
-    '7 8 8': 3,
-    '2 2 4': 3,
-    '2 2 9': 3,
-    '2 4 4': 3,
-    '2 4 9': 3,
-    '4 4 9': 3,
-    '4 9 9': 3
-}
+const winObject = [
+    '6 6 7',
+    '6 6 8',
+    '6 7 7',
+    '6 7 8',
+    '6 8 8',
+    '7 7 8',
+    '7 8 8',
+    '2 2 4',
+    '2 2 9',
+    '2 4 4',
+    '2 4 9',
+    '4 4 9',
+    '4 9 9'
+]
 
 const container = document.getElementById('container')
 const btnSpin = document.getElementById('spin-button')
@@ -128,8 +128,6 @@ function spinStart() {
     const winMultiplier = calcWin(winArry)
     console.log(`Win Multiplier: ${winMultiplier}`)
 
-
-
     // Generate array of images to be displayed in succession for each reel
     const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
     const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 2)
@@ -140,14 +138,25 @@ function spinStart() {
     spin(reelArry[1], reel2SpinArry)
     spin(reelArry[2], reel3SpinArry)
 
+    // delay remaining function until spins are finished
 
+    window.setTimeout(()=> {
+        // add remaining function to display win
 
+        const playerMessageDiv = document.getElementById('messages')
+        const playerMessage = playerMessageDiv.querySelector('p')
+        playerMessage.innerText = `You won ${winMultiplier} X your bet!`
+
+    }, (reel3SpinArry.length + 2)*150, winMultiplier)  
 }
 
 function calcWin(winArry) {
     console.log(`Win Array: ${winArry}`)
-    // debugger
-   
+    
+    const sortedWinArry = winArry.sort().join()
+    
+    console.log(`Sorted Win Array: ${sortedWinArry}`)
+
     if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
         return 10
     } else if (winArry.includes(4)) {
@@ -155,10 +164,9 @@ function calcWin(winArry) {
         if (numCherry.length === 2) {
             return 5
         } else {return 2}
-    } else {return 0}
-
-
-
+    } else if (winObject.includes(sortedWinArry)) {
+        return 3
+    } else { return 0 }
 }
 
 function createSpinArry(initialImage, winImage, spins) {
