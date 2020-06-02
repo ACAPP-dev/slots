@@ -34,8 +34,6 @@ fetchImages()
 // Define image object (each reel image will be an instance)
 
 class ReelImage {
-    
-
     constructor(imageID, name, source) {
         this.imageID = imageID
         this.name = name
@@ -55,6 +53,7 @@ class ReelImage {
     }
  
 }
+
 
 // Fetch images from database function & create instances
 
@@ -106,29 +105,34 @@ function spinStart() {
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
-    console.log(`WinImage1 = ${winImg1.source}`)
 
     // Spin reel 1 (0 in array) (arguments: reel#, finalImg, initialImg, #spins)
     initialSpin(0, winImg1, InitialImgArry[0], 3)
-    finalSpin(0, winImg1)
+    
+    
     // Spin reel 2
-    // spinInterval(()=>spin(1, winImg2), 190 * IMAGES.length, 4)
+    // initialSpin(1, winImg2, InitialImgArry[1], 4)
+    // finalSpin(1, winImg2)
 
     // Spin reel 3
-    // spinInterval(()=>spin(2, winImg3), 190 * IMAGES.length, 5)
+    // initialSpin(2, winImg3, InitialImgArry[2], 5)
+    // finalSpin(2, winImg3)
 }
 
 // setTimeout(()=>selectImg1(), 0)
         
-function spinInterval(callback, delay, repetitions) {
+function spinInterval(callback, delay, reel, winImage, spins) {
     let reps = 0
     let intervalID = window.setInterval(()=> {
         callback()
 
-        if (++reps === repetitions) {
+        if (++reps === spins) {
             window.clearInterval(intervalID)
+            console.log('final spin called')
+            finalSpin(reel, winImage)
         }
     }, delay)
+    
 }
 
 // Spin Steps - reel 1
@@ -137,7 +141,7 @@ function spinInterval(callback, delay, repetitions) {
 // loop through images with delay between each image
 // stop on winning image after specified number of loops
 
-function initialSpin(reel, winImage, initialImage, spinNumber) {
+function initialSpin(reel, winImage, initialImage, spins) {
     const currentReel = reelArry[reel]
     let index = IMAGES.findIndex((image) => image.source === initialImage.source)
     let j = 0
@@ -145,49 +149,56 @@ function initialSpin(reel, winImage, initialImage, spinNumber) {
         window.setTimeout(()=> {
             const reelImg = currentReel.querySelector('img')
             currentReel.removeChild(reelImg)
-            reelImg.src = IMAGES[i].source
+            const img = document.createElement('img')
+            img.src = IMAGES[i].source
             // reel1Img.classList.add('img-spin')
-            currentReel.appendChild(reelImg)
+            currentReel.appendChild(img)
             
         }, j * 200)  
         j++      
     }
-    spinInterval(()=>midSpin(reel, winImage), 190 * IMAGES.length, spinNumber)
+    spinInterval(()=>midSpin(0, winImage), 200 * IMAGES.length, reel, winImage, spins)
+    
 }
 
 function midSpin(reel, winImage) {
     const currentReel = reelArry[reel]
+    let j = 1
     for (let i=0; i<IMAGES.length; i++) {
         window.setTimeout(()=> {
             const reelImg = currentReel.querySelector('img')
             currentReel.removeChild(reelImg)
-            reelImg.src = IMAGES[i].source
+            const img = document.createElement('img')
+            img.src = IMAGES[i].source
             // reel1Img.classList.add('img-spin')
-            currentReel.appendChild(reelImg)
-        }, i*200)        
+            currentReel.appendChild(img)
+        }, j*200)  
+        j++      
     }
+    console.log(`midSpin for reel: ${reel}`)
 }
 
 function finalSpin(reel, winImage) {
     const currentReel = reelArry[reel]
     let index = IMAGES.findIndex((image) => image.source === winImage.source)
-    let j = 0
-    console.log(`winImage: ${winImage.source}`)
-    for (let i=0; i<index; i++) {
-        console.log(i)
+    let j = 1
+    for (let i=0; i<=index; i++) {
+        // console.log(i)
         window.setTimeout(()=> {
             const reelImg = currentReel.querySelector('img')
             
             // debugger
             currentReel.removeChild(reelImg)
-            reelImg.src = IMAGES[i].source
+            const img = document.createElement('img')
+            img.src = IMAGES[i].source
             
             // reel1Img.classList.add('img-spin')
-            currentReel.appendChild(reelImg)  
-            console.log(reelImg)
+            currentReel.appendChild(img)  
+            
         }, j * 200)  
         j++      
     }
+    console.log(`winning image for reel: ${currentReel.id} ${winImage.source}`)
 }
 
 
