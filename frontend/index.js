@@ -4,7 +4,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 const fetchImagesURL = 'http://localhost:3000/images'
+
 const IMAGES = []
+const winObject = {
+    '6 6 7': 3,
+    '6 6 8': 3,
+    '6 7 7': 3,
+    '6 7 8': 3,
+    '6 8 8': 3,
+    '7 7 8': 3,
+    '7 8 8': 3,
+    '2 2 4': 3,
+    '2 2 9': 3,
+    '2 4 4': 3,
+    '2 4 9': 3,
+    '4 4 9': 3,
+    '4 9 9': 3
+}
 
 const container = document.getElementById('container')
 const btnSpin = document.getElementById('spin-button')
@@ -107,6 +123,12 @@ function spinStart() {
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
+    const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
+    // Calculate win amount (if any)
+    const winMultiplier = calcWin(winArry)
+    console.log(`Win Multiplier: ${winMultiplier}`)
+
+
 
     // Generate array of images to be displayed in succession for each reel
     const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
@@ -122,12 +144,29 @@ function spinStart() {
 
 }
 
+function calcWin(winArry) {
+    console.log(`Win Array: ${winArry}`)
+    // debugger
+   
+    if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
+        return 10
+    } else if (winArry.includes(4)) {
+        const numCherry = winArry.map((el) => el ===4)
+        if (numCherry.length === 2) {
+            return 5
+        } else {return 2}
+    } else {return 0}
+
+
+
+}
+
 function createSpinArry(initialImage, winImage, spins) {
     const initialIndex = IMAGES.findIndex((image) => image.source === initialImage.source)
     const finalIndex = IMAGES.findIndex((image) => image.source === winImage.source)
     
-    console.log(initialImage.source)
-    console.log(winImage.source)
+    console.log(`Starting Image: ${initialImage.source}`)
+    console.log(`Win Image: ${winImage.source}`)
     
     const returnArry = IMAGES.slice(initialIndex)
     
@@ -151,3 +190,4 @@ function spin(reel, imageArry) {
         }, (i + 1)*150)  
     }
 }
+})
