@@ -109,36 +109,68 @@ function spinStart() {
     const winImg3 = IMAGES[generateRandom()]
 
     // Generate array of images to be displayed in succession for each reel
-    
-    const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 3)
+    const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 2)
+    const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 3)
+    const reel3SpinArry = createSpinArry(initialImgArry[2], winImg3, 4)
+    debugger
+    // start spin in slot machine
+    spin(reelArry[0], reel1SpinArry)
+    spin(reelArry[1], reel2SpinArry)
+    spin(reelArry[2], reel3SpinArry)
 
 
 
-    // Spin reel 1 (0 in array) (arguments: reel#, finalImg, initialImg, #spins)
-    // initialSpin(0, winImg1, InitialImgArry[0], 3)
-    
-    
-    // Spin reel 2
-    // initialSpin(1, winImg2, InitialImgArry[1], 4)
-    // finalSpin(1, winImg2)
-
-    // Spin reel 3
-    // initialSpin(2, winImg3, InitialImgArry[2], 5)
-    // finalSpin(2, winImg3)
 }
-
-// setTimeout(()=>selectImg1(), 0)
 
 function createSpinArry(initialImage, winImage, spins) {
     const initialIndex = IMAGES.findIndex((image) => image.source === initialImage.source)
     const finalIndex = IMAGES.findIndex((image) => image.source === winImage.source)
+    
     console.log(initialImage.source)
     console.log(winImage.source)
-    const returnArry = IMAGES.slice(initialIndex).concat( 
-        IMAGES, IMAGES, IMAGES.slice(0, finalIndex))
-    debugger
+    
+    const returnArry = IMAGES.slice(initialIndex)
+    
+    for (let i=0; i<spins; i++) {
+        returnArry.push(...IMAGES)
+    }
+    returnArry.push(...IMAGES.slice(0, finalIndex + 1))
 
+    return returnArry
 }
+
+function spin(reel, imageArry) {
+
+    for (let i=0; i<imageArry.length; i++) {
+        window.setTimeout(()=> {
+
+            const reelImg = reel.querySelector('img')
+            reel.removeChild(reelImg)
+            const img = document.createElement('img')
+            img.src = imageArry[i].source
+            // reel1Img.classList.add('img-spin')
+            reel.appendChild(img)
+        }, (i + 1)*150)  
+    }
+    console.log(`Spin for reel: ${reel.id}`)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// setTimeout(()=>selectImg1(), 0)
+
+
 
 
 function spinInterval(callback, delay, reel, winImage, spins) {
@@ -181,22 +213,6 @@ function initialSpin(reel, winImage, initialImage, spins) {
     
 }
 
-function midSpin(reel, winImage) {
-    const currentReel = reelArry[reel]
-    let j = 1
-    for (let i=0; i<IMAGES.length; i++) {
-        window.setTimeout(()=> {
-            const reelImg = currentReel.querySelector('img')
-            currentReel.removeChild(reelImg)
-            const img = document.createElement('img')
-            img.src = IMAGES[i].source
-            // reel1Img.classList.add('img-spin')
-            currentReel.appendChild(img)
-        }, j*200)  
-        j++      
-    }
-    console.log(`midSpin for reel: ${reel}`)
-}
 
 function finalSpin(reel, winImage) {
     const currentReel = reelArry[reel]
