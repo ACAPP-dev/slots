@@ -106,11 +106,11 @@ function spinStart() {
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
-    console.log(`WinImage1 = ${winImg1}`)
+    console.log(`WinImage1 = ${winImg1.source}`)
 
-    // Spin reel 1 (0 in array)
-    spinInterval(()=>spin(0, winImg1, InitialImgArry[0]), 190 * IMAGES.length, 3)
-
+    // Spin reel 1 (0 in array) (arguments: reel#, finalImg, initialImg, #spins)
+    initialSpin(0, winImg1, InitialImgArry[0], 3)
+    finalSpin(0, winImg1)
     // Spin reel 2
     // spinInterval(()=>spin(1, winImg2), 190 * IMAGES.length, 4)
 
@@ -122,7 +122,7 @@ function spinStart() {
         
 function spinInterval(callback, delay, repetitions) {
     let reps = 0
-    let intervalID = window.setInterval(()=>{
+    let intervalID = window.setInterval(()=> {
         callback()
 
         if (++reps === repetitions) {
@@ -137,27 +137,57 @@ function spinInterval(callback, delay, repetitions) {
 // loop through images with delay between each image
 // stop on winning image after specified number of loops
 
-function spin(reel, winImage, initialImage) {
+function initialSpin(reel, winImage, initialImage, spinNumber) {
     const currentReel = reelArry[reel]
     let index = IMAGES.findIndex((image) => image.source === initialImage.source)
-    console.log(index)
+    let j = 0
     for (let i=index; i<IMAGES.length; i++) {
         window.setTimeout(()=> {
-            
             const reelImg = currentReel.querySelector('img')
             currentReel.removeChild(reelImg)
-            console.log(i)
-
             reelImg.src = IMAGES[i].source
             // reel1Img.classList.add('img-spin')
             currentReel.appendChild(reelImg)
             
-        }, i*200)        
-
+        }, j * 200)  
+        j++      
     }
+    spinInterval(()=>midSpin(reel, winImage), 190 * IMAGES.length, spinNumber)
+}
 
-    
+function midSpin(reel, winImage) {
+    const currentReel = reelArry[reel]
+    for (let i=0; i<IMAGES.length; i++) {
+        window.setTimeout(()=> {
+            const reelImg = currentReel.querySelector('img')
+            currentReel.removeChild(reelImg)
+            reelImg.src = IMAGES[i].source
+            // reel1Img.classList.add('img-spin')
+            currentReel.appendChild(reelImg)
+        }, i*200)        
+    }
+}
 
+function finalSpin(reel, winImage) {
+    const currentReel = reelArry[reel]
+    let index = IMAGES.findIndex((image) => image.source === winImage.source)
+    let j = 0
+    console.log(`winImage: ${winImage.source}`)
+    for (let i=0; i<index; i++) {
+        console.log(i)
+        window.setTimeout(()=> {
+            const reelImg = currentReel.querySelector('img')
+            
+            // debugger
+            currentReel.removeChild(reelImg)
+            reelImg.src = IMAGES[i].source
+            
+            // reel1Img.classList.add('img-spin')
+            currentReel.appendChild(reelImg)  
+            console.log(reelImg)
+        }, j * 200)  
+        j++      
+    }
 }
 
 
