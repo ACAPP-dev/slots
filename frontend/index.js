@@ -3,6 +3,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+const loginForm = document.getElementById('log-in-form')
+loginForm.addEventListener('submit', loginUser)
+
+const newUserForm = document.getElementById('new-user-form')
+newUserForm.addEventListener('submit', createUser)
 
 const winObject = []
 
@@ -27,9 +32,11 @@ let reel3Selection = 0
 
 const playerMessageDiv = document.getElementById('messages')
 
-fetchImages()
+
+
 
 // Fetch images from database function & create instances
+fetchImages()
 
 function fetchImages() {
     fetch(fetchImagesURL)
