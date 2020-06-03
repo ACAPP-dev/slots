@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :username
       t.string :password_digest
-      t.float :balance
+      t.float :balance, default: 0.0
 
       t.timestamps
     end

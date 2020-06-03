@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_213843) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "type"
+    t.integer "transaction_type"
     t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_213843) do
     t.string "name"
     t.string "username"
     t.string "password_digest"
-    t.float "balance"
+    t.float "balance", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -62,3 +62,17 @@ IMAGES.each do |image|
     Image.create(name: image[:name], source: image[:source], win_code: image[:win_code])
 end
 
+# Create 2 users
+
+user1 = User.create(name: 'Andrew', username: 'winner', password: '1111')
+user2 = User.create(name: 'Sharon', username: 'sharon', password: '1111')
+
+# Create deposit transactions
+
+user1.transactions.build(transaction_type: 1, amount: 1000.00)
+user1.balance += user1.transactions.last.amount
+user1.save
+user2.transactions.build(transaction_type: 1, amount: 10000.00)
+user2.balance += user2.transactions.last.amount
+user2.save
+
