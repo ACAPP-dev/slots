@@ -6,6 +6,10 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+}
+
 #container {
     display: flex;
     margin: auto;

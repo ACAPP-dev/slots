@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :images, only: [:index]
   resources :users
-  resources :transactions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:create, :destroy]
+  resources :transactions, only: [:create, :destroy]
 
 end
