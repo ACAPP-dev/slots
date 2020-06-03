@@ -8,46 +8,57 @@
 
 # Create Image Instances
 
+# Using only a few images for testing
+
 IMAGES = [
-    {
-        name: 'bag',
-        source: 'bag.png'
-    },
+    # {
+    #     name: 'bag',
+    #     source: 'bag.png',
+    #     win_code: 0
+    # },
     {
         name: 'banana',
-        source: 'banana.jpg'
-    },
-    {
-        name: 'bar',
-        source: 'bar.png'
-    },
-    {
-        name: 'cherry',
-        source: 'cherry.jpg'
-    },
-    {
-        name: 'dollar',
-        source: 'dollar.png'
+        source: 'banana.jpg',
+        win_code: 3
     },
     {
         name: 'gold-seven',
-        source: 'gold-seven.png'
+        source: 'gold-seven.png',
+        win_code: 2
+    },
+    {
+        name: 'bar',
+        source: 'bar.png',
+        win_code: 1
+    },
+    # {
+    #     name: 'cherry',
+    #     source: 'cherry.jpg',
+    #     win_code: 3
+    # },
+    {
+        name: 'dollar',
+        source: 'dollar.png',
+        win_code: 0
     },
     {
         name: 'seven',
-        source: 'seven.png'
+        source: 'seven.png',
+        win_code: 2
     },
-    {
-        name: 'triple-seven',
-        source: 'triple-seven.png'
-    },
+    # {
+    #     name: 'triple-seven',
+    #     source: 'triple-seven.png',
+    #     win_code: 2
+    # },
     {
         name: 'watermelon',
-        source: 'watermelon.png'
+        source: 'watermelon.png',
+        win_code: 3
     }
 ]
 
 IMAGES.each do |image|
-    Image.create(name: image[:name], source: image[:source])
+    Image.create(name: image[:name], source: image[:source], win_code: image[:win_code])
 end
 

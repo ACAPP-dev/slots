@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_224140) do
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.string "source"
+    t.integer "win_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
