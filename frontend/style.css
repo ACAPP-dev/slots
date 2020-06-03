@@ -21,6 +21,24 @@ h3 {
     background-color: #3F69AA;
 }
 
+.form-div {
+    border: solid 2px goldenrod;
+    margin: 5px auto 10px;
+    height: 50px;
+    width: 80%;
+    align-items: center;
+}
+
+#log-in-div {
+    /* visibility: hidden; */
+
+}
+
+#new-user-div {
+    /* visibility: hidden; */
+
+}
+
 .slot {
     width: 600px;
     margin: 2px;
