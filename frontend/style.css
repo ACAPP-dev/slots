@@ -21,6 +21,16 @@ h3 {
     background-color: #3F69AA;
 }
 
+span.link {
+    text-decoration: underline;
+    color: purple;
+    cursor: pointer;
+}
+
+span.link:hover {
+    text-shadow: 1px 1px 1px #555
+}
+
 .form-div {
     border: solid 2px goldenrod;
     margin: 5px auto 10px;
