@@ -3,24 +3,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-const fetchImagesURL = 'http://localhost:3000/images'
 
-const IMAGES = []
-const winObject = [
-    '6 6 7',
-    '6 6 8',
-    '6 7 7',
-    '6 7 8',
-    '6 8 8',
-    '7 7 8',
-    '7 8 8',
-    '2 2 4',
-    '2 2 9',
-    '2 4 4',
-    '2 4 9',
-    '4 4 9',
-    '4 9 9'
-]
+const winObject = []
 
 const container = document.getElementById('container')
 const btnSpin = document.getElementById('spin-button')
@@ -45,32 +29,6 @@ const playerMessageDiv = document.getElementById('messages')
 
 fetchImages()
 
-
-
-// Define image object (each reel image will be an instance)
-
-class ReelImage {
-    constructor(imageID, name, source) {
-        this.imageID = imageID
-        this.name = name
-        this.source = `images/${source}`
-        // debugger
-        ReelImage.addImage(this)
-    }
-
-    static addImage(instance) {
-        IMAGES.push(instance)
-    }
-
-    get element() {
-        const img = document.createElement('img')
-        img.src = this.source
-        return img
-    }
- 
-}
-
-
 // Fetch images from database function & create instances
 
 function fetchImages() {
@@ -83,7 +41,7 @@ function fetchImages() {
 
 function createImages(json) {
     json.forEach(image => {
-        new ReelImage(image['id'], image['name'], image['source'])
+        new ReelImage(image['id'], image['name'], image['source'], image['win_code'])
     });
     console.log(IMAGES)
     // invoke function to display initial images on reels
@@ -124,8 +82,9 @@ function spinStart() {
     const winImg2 = IMAGES[generateRandom()]
     const winImg3 = IMAGES[generateRandom()]
     const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
+    const winCodeArry = [winImg1.win_code, winImg2.win_code, winImg3.win_code]
     // Calculate win amount (if any)
-    const winMultiplier = calcWin(winArry)
+    const winMultiplier = calcWin(winArry, winCodeArry)
     console.log(`Win Multiplier: ${winMultiplier}`)
 
     // Generate array of images to be displayed in succession for each reel
@@ -150,23 +109,29 @@ function spinStart() {
     }, (reel3SpinArry.length + 2)*150, winMultiplier)  
 }
 
-function calcWin(winArry) {
+function calcWin(winArry, winCodeArry) {
     console.log(`Win Array: ${winArry}`)
+    console.log(`Win Code Array: ${winCodeArry}`)
+    // const sortedWinArry = winArry.sort().join()
     
-    const sortedWinArry = winArry.sort().join()
-    
-    console.log(`Sorted Win Array: ${sortedWinArry}`)
+    // console.log(`Sorted Win Array: ${sortedWinArry}`)
 
     if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
+        console.log('all elements match!')
         return 10
-    } else if (winArry.includes(4)) {
-        const numCherry = winArry.map((el) => el ===4)
-        if (numCherry.length === 2) {
-            return 5
-        } else {return 2}
-    } else if (winObject.includes(sortedWinArry)) {
+    } else if (winCodeArry.includes(1)) {
+        console.log('Includes at least 1 wincode of 1!')
+        const numBarArry = winCodeArry.filter((el) => el === 1)
+        if (numBarArry.length === 1) { return 2 }
+        else if (numBarArry.length === 2) {return 5 }
+    } else if (winCodeArry.every((el) => el === 2)) {
+        console.log('Includes 2s!')
         return 3
-    } else { return 0 }
+    } else if (winCodeArry.every((el) => el === 3)) {
+        console.log('Includes all 3s!')
+        return 2
+    }
+    
 }
 
 function createSpinArry(initialImage, winImage, spins) {
