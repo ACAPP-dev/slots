@@ -9,13 +9,14 @@ function loginUser(event) {
     }
 
     fetch('http://localhost:3000/sessions', configObject)
-        .then (resp => resp.json)
+        .then (resp => resp.json())
+        
+        .catch (error => {
+            return console.log('error!')
+        })
         .then (json => {
             console.log('User Logged In')
             console.log(json)
-        })
-        .catch (error => {
-            console.log('error!')
         })
 }
 

@@ -10,13 +10,19 @@ h3 {
     text-align: center;
 }
 
-#log-in-bar {
+#login-bar {
     visibility: visible ;
 
 }
 
-#log-out-bar {
+#logout-bar {
     visibility: visible;
+}
+
+#messages-bar {
+    visibility: visible;
+    color: red;
+    font-size: 28px;
 }
 
 #container {
