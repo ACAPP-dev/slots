@@ -1,4 +1,12 @@
 
+class User {
+    constructor(name, username, balance) {
+        this.name = name
+        this.username = username
+        this.balance = balance
+    }
+}
+
 function loginUser(event) {
     event.preventDefault()
 
@@ -10,16 +18,15 @@ function loginUser(event) {
 
     fetch('http://localhost:3000/sessions', configObject)
         .then (resp => {
-            // debugger
             if (!resp.ok) {
                 throw Error(resp.statusText)
             } else {
-                debugger
-                resp.json()}
+                return resp.json()}
         })
         .then (json => {
             console.log('User Logged In')
             console.log(json)
+            makeUserObject(json)
         })
         .catch (error => {
             return console.log('error! ' + error)
@@ -31,3 +38,10 @@ function createUser(event) {
     console.log('user created')
 }
 
+function makeUserObject(json) {
+    user = new User(json.name, json.username, json.balance)
+    // change welcome message
+    // load balance in slot machine
+    // hide forms and display log out message
+    console.log(user)
+}
