@@ -9,6 +9,8 @@ loginForm.addEventListener('submit', loginUser)
 const newUserForm = document.getElementById('new-user-form')
 newUserForm.addEventListener('submit', createUser)
 
+const fetchImagesURL = 'http://localhost:3000/images'
+
 const winObject = []
 
 const container = document.getElementById('container')

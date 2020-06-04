@@ -64,7 +64,7 @@ end
 
 # Create 2 users
 
-user1 = User.create(name: 'Andrew', username: 'winner', password: '1111')
+user1 = User.create(name: 'Andrew', username: 'acapp', password: '1234')
 user2 = User.create(name: 'Sharon', username: 'sharon', password: '1111')
 
 # Create deposit transactions
