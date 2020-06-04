@@ -3,6 +3,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+const loginBar = document.getElementById('log-in-bar')
+const loginLink = loginBar.querySelector('#login-link')
+loginLink.addEventListener('click', ()=> console.log('Clicked Log In'))
+
+const newUserLink = loginBar.querySelector('#new-user-link')
+newUserLink.addEventListener('click', ()=> console.log('Clicked new User'))
+
+const logoutBar = document.getElementById('log-out-bar')
+
+
 const loginForm = document.getElementById('log-in-form')
 loginForm.addEventListener('submit', loginUser)
 

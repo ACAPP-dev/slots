@@ -10,6 +10,15 @@ h3 {
     text-align: center;
 }
 
+#log-in-bar {
+    visibility: visible ;
+
+}
+
+#log-out-bar {
+    visibility: visible;
+}
+
 #container {
     display: flex;
     margin: auto;
@@ -28,7 +37,8 @@ span.link {
 }
 
 span.link:hover {
-    text-shadow: 1px 1px 1px #555
+    color: green;
+    text-shadow: 1px 1px 1px green;
 }
 
 .form-div {
@@ -40,12 +50,12 @@ span.link:hover {
 }
 
 #log-in-div {
-    /* visibility: hidden; */
+    visibility: visible;
 
 }
 
 #new-user-div {
-    /* visibility: hidden; */
+    visibility: visible;
 
 }
 
