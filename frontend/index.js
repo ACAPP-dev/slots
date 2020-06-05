@@ -3,6 +3,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+let game 
+
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
 const loginDiv = document.getElementById('log-in-div')

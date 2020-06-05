@@ -70,6 +70,10 @@ function makeUser(json) {
     // hide forms and display log out message
     console.log(user)
 
+    // Create game instance and load balance in slot machine
+    game = new Game(user.name, user.balance)
+
+
 }
 
 function updateDisplay(user) {
@@ -86,5 +90,9 @@ function updateDisplay(user) {
     newUserDiv.style.display = 'none'
     loginForm.reset()
     newUserForm.reset()
+
+    
+
+
     
 }
