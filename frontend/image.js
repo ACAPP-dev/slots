@@ -1,5 +1,5 @@
 
-const fetchImagesURL = 'http://localhost:3000/images'
+
 const IMAGES = []
 
 
