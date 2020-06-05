@@ -11,18 +11,16 @@ h3 {
 }
 
 #login-bar {
-    visibility: visible ;
+    display: block;
 
 }
 
 #logout-bar {
-    visibility: hidden;
+    display: none;
 }
 
 #messages-bar {
-    visibility: visible;
-    color: red;
-    font-size: 28px;
+    color: greenyellow;
 }
 
 #container {
@@ -56,12 +54,12 @@ span.link:hover {
 }
 
 #log-in-div {
-    visibility: visible;
+    display: none;
 
 }
 
 #new-user-div {
-    visibility: visible;
+    display: none;
 
 }
 

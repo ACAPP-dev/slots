@@ -5,10 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
-loginLink.addEventListener('click', ()=> console.log('Clicked Log In'))
+const loginDiv = document.getElementById('log-in-div')
+const newUserDiv = document.getElementById('new-user-div')
+loginLink.addEventListener('click', ()=> {
+    newUserDiv.style.display = 'none'
+    loginDiv.style.display = 'block'
+})
 
 const newUserLink = loginBar.querySelector('#new-user-link')
-newUserLink.addEventListener('click', ()=> console.log('Clicked new User'))
+newUserLink.addEventListener('click', ()=> {
+    loginDiv.style.display = 'none'
+    newUserDiv.style.display = 'block'
+})
+
 
 let logoutBar = document.getElementById('logout-bar')
 const logoutLink = logoutBar.querySelector('#logout-link')

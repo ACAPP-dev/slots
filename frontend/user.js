@@ -76,7 +76,7 @@ function updateDisplay(user) {
     loginBar = document.getElementById('login-bar')
     logoutBar = document.getElementById('logout-bar')
     
-    loginBar.style.visibility = 'hidden'
-    logoutBar.style.visibility = 'visible'
+    loginBar.style.display = 'none'
+    logoutBar.style.display = 'block'
     debugger
 }
