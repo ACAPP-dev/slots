@@ -1,6 +1,6 @@
 
 const balanceDisplay = document.getElementById('balance')
-const betDisplay = document.getElementById('bet')
+const betDisplay = document.getElementById('bet-amount')
 const winDisplay = document.getElementById('win')
 
 
@@ -13,14 +13,22 @@ class Game {
     // add methods including spin?
 
     updateBalance(win = 0) {
-        balanceDisplay.innerText = this.balance += win
+        balanceDisplay.innerText = Game.numberFormat(this.balance += win)
     }
 
     updateBet(bet = this.balance / 10, change = 0) {
-        betDisplay.innerText += change
+        betDisplay.innerText = Game.numberFormat(bet += change)
     }
 
     updateWin(win = 0) {
-        winDisplay.innerText += win
+        winDisplay.innerText = Game.numberFormat(win)
+    }
+
+    static numberFormat(number) {
+        const numArry = number.toString().split(".")
+
+        numArry[0] = '$' + numArry[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        return numArry.join('.')
+
     }
 }

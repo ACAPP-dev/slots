@@ -104,7 +104,7 @@ function displayImages() {
 }
 
 const greeting = document.createElement('p')
-greeting.classList.add('message-text')
+greeting.id = 'message-text'
 greeting.innerText = 'Hello Slot Player!'
 playerMessageDiv.appendChild(greeting)
 
