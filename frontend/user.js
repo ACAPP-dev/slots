@@ -50,7 +50,7 @@ function createUser(event) {
         })
         .then (json => {
             console.log('User Created and Logged In')
-            makeUserObject(json)
+            makeUser(json)
         })
         .catch (error => {
             alert(`Error: ${error.statusText}`)
@@ -83,7 +83,8 @@ function updateDisplay(user) {
     loginBar.style.display = 'none'
     logoutBar.style.display = 'block'
     loginDiv.style.display = 'none'
+    newUserDiv.style.display = 'none'
     loginForm.reset()
-
+    newUserForm.reset()
     
 }
