@@ -140,8 +140,9 @@ function spinStart() {
         // add remaining function to display win
         const betAmount = parseInt(document.getElementById('bet-amount'))
         const winAmount = betAmount * winMultiplier
+        const newBalance = game.balance += winAmount
         debugger
-        game.updateBalance(winAmount)
+        game.updateBalance(newBalance)
         game.updateWin(winAmount)
 
         const playerMessageDiv = document.getElementById('messages')
