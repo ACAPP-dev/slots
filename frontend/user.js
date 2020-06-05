@@ -25,8 +25,7 @@ function loginUser(event) {
         })
         .then (json => {
             console.log('User Logged In')
-            console.log(json)
-            makeUserObject(json)
+            makeUser(json)
         })
         .catch (error => {
             return console.log('error! ' + error)
@@ -61,12 +60,23 @@ function createUser(event) {
 
 }
 
-function makeUserObject(json) {
+function makeUser(json) {
     user = new User(json.name, json.username, json.balance)
-    // display alert message that log in successful
-    // change welcome message
     
+    // change welcome message
+    updateDisplay(user)
+
     // load balance in slot machine
     // hide forms and display log out message
     console.log(user)
+
+}
+
+function updateDisplay(user) {
+    loginBar = document.getElementById('login-bar')
+    logoutBar = document.getElementById('logout-bar')
+    
+    loginBar.style.visibility = 'hidden'
+    logoutBar.style.visibility = 'visible'
+    debugger
 }
