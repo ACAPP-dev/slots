@@ -5,6 +5,7 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.save
             session[:username] = params[:username]
+            byebug
             render json: user.to_json(only: [:name, :username, :balance])
         else
             render json: {error: "Unable to Create User!"}, status: not_permitted

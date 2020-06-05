@@ -75,8 +75,15 @@ function makeUser(json) {
 function updateDisplay(user) {
     loginBar = document.getElementById('login-bar')
     logoutBar = document.getElementById('logout-bar')
-    
+    loginForm = document.getElementById('log-in-form')
+    newUserForm = document.getElementById('new-user-form')
+    const loginDiv = document.getElementById('log-in-div')
+    const newUserDiv = document.getElementById('new-user-div')
+
     loginBar.style.display = 'none'
     logoutBar.style.display = 'block'
-    debugger
+    loginDiv.style.display = 'none'
+    loginForm.reset()
+
+    
 }

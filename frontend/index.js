@@ -21,12 +21,17 @@ newUserLink.addEventListener('click', ()=> {
 
 let logoutBar = document.getElementById('logout-bar')
 const logoutLink = logoutBar.querySelector('#logout-link')
-logoutLink.addEventListener('click', ()=> console.log('Clicked logout'))
+logoutLink.addEventListener('click', ()=> {
+    // need to save balance to database
 
-const loginForm = document.getElementById('log-in-form')
+    logoutBar.style.display = 'none'
+    loginBar.style.display = 'block'
+})
+
+let loginForm = document.getElementById('log-in-form')
 loginForm.addEventListener('submit', loginUser)
 
-const newUserForm = document.getElementById('new-user-form')
+let newUserForm = document.getElementById('new-user-form')
 newUserForm.addEventListener('submit', createUser)
 
 const fetchImagesURL = 'http://localhost:3000/images'
