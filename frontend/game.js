@@ -16,7 +16,7 @@ class Game {
         balanceDisplay.innerText = Game.numberFormat(this.balance += win)
     }
 
-    updateBet(bet = this.balance / 10, change = 0) {
+    updateBet(bet = this.balance / 100, change = 0) {
         betDisplay.innerText = Game.numberFormat(bet += change)
     }
 

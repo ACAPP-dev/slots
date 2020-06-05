@@ -1,9 +1,10 @@
 
 // Event listener to run after html is parsed
+var game
 
 document.addEventListener('DOMContentLoaded', () => {
 
-let game 
+
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
@@ -137,6 +138,11 @@ function spinStart() {
 
     window.setTimeout(()=> {
         // add remaining function to display win
+        const betAmount = parseInt(document.getElementById('bet-amount'))
+        const winAmount = betAmount * winMultiplier
+        debugger
+        game.updateBalance(winAmount)
+        game.updateWin(winAmount)
 
         const playerMessageDiv = document.getElementById('messages')
         const playerMessage = playerMessageDiv.querySelector('p')
@@ -166,7 +172,7 @@ function calcWin(winArry, winCodeArry) {
     } else if (winCodeArry.every((el) => el === 3)) {
         console.log('Includes all 3s!')
         return 2
-    }
+    } else { return 0}
     
 }
 
