@@ -8,6 +8,7 @@ class Game {
     constructor(name, balance) {
         this.name = name
         this.balance = balance
+        this.bet = balance / 100
     }
 
     // add methods including spin?
@@ -16,8 +17,9 @@ class Game {
         balanceDisplay.innerText = Game.numberFormat(this.balance += win)
     }
 
-    updateBet(bet = this.balance / 100, change = 0) {
-        betDisplay.innerText = Game.numberFormat(bet += change)
+    updateBet(change = 0) {
+        
+        betDisplay.innerText = Game.numberFormat(this.bet += change)
     }
 
     updateWin(win = 0) {

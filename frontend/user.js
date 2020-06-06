@@ -69,7 +69,7 @@ function makeUser(json) {
     // load balance in slot machine
     // hide forms and display log out message
     console.log(user)
-    debugger
+    // debugger
     // Create game instance and load balance in slot machine
     game = new Game(user.name, user.balance)
     game.updateBalance()

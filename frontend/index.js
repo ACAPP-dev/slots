@@ -114,6 +114,10 @@ playerMessageDiv.appendChild(greeting)
 btnSpin.addEventListener('click', spinStart)
 
 function spinStart() {
+    // Deduct Bet Amount from Balance and update display
+    game.balance -= game.bet
+    game.updateBalance()
+
     // Select final image for each reel
     const winImg1 = IMAGES[generateRandom()]
     const winImg2 = IMAGES[generateRandom()]
@@ -138,11 +142,11 @@ function spinStart() {
 
     window.setTimeout(()=> {
         // add remaining function to display win
-        const betAmount = parseInt(document.getElementById('bet-amount'))
-        const winAmount = betAmount * winMultiplier
-        const newBalance = game.balance += winAmount
-        debugger
-        game.updateBalance(newBalance)
+        
+        const winAmount = game.bet * winMultiplier
+        // const newBalance = game.balance += winAmount
+        // debugger
+        game.updateBalance(winAmount)
         game.updateWin(winAmount)
 
         const playerMessageDiv = document.getElementById('messages')
