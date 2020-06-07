@@ -125,7 +125,11 @@ playerMessageDiv.appendChild(greeting)
 btnSpin.addEventListener('click', spinStart)
 
 function spinStart() {
-    // Deduct Bet Amount from Balance and update display
+
+    if (game.balance <= game.bet) {
+        return alert("Make a deposit to continue playing!")
+    }
+
     game.balance -= game.bet
     game.updateBalance()
 
