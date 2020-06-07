@@ -62,7 +62,11 @@ let reel3Selection = 0
 
 const playerMessageDiv = document.getElementById('messages')
 
+const reduceBet = document.getElementById('reduce-bet')
+reduceBet.addEventListener('click', Game.changeBet)
 
+const increaseBet = document.getElementById('increase-bet')
+increaseBet.addEventListener('click', Game.changeBet)
 
 
 // Fetch images from database function & create instances

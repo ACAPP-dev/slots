@@ -33,4 +33,10 @@ class Game {
         return numArry.join('.')
 
     }
+
+    changeBet(direction) {
+        console.log('Bet Changed ' + direction)
+        debugger
+
+    }
 }
