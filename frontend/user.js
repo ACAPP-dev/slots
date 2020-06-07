@@ -76,11 +76,7 @@ function makeUser(json) {
     game.updateBet()
     game.updateWin()
 
-    const reduceBet = document.getElementById('reduce-bet')
-    reduceBet.addEventListener('click', Game.changeBet('down'))
-
-    const increaseBet = document.getElementById('increase-bet')
-    increaseBet.addEventListener('click', Game.changeBet('up'))
+    
 
     const message = document.getElementById('message-text')
     message.innerText = 'Ready to Spin!'

@@ -34,9 +34,5 @@ class Game {
 
     }
 
-    changeBet(direction) {
-        console.log('Bet Changed ' + direction)
-        debugger
-
-    }
+    
 }

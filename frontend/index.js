@@ -1,10 +1,6 @@
 
 // Event listener to run after html is parsed
-var game
-
-document.addEventListener('DOMContentLoaded', () => {
-
-
+let game
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
@@ -63,11 +59,22 @@ let reel3Selection = 0
 const playerMessageDiv = document.getElementById('messages')
 
 const reduceBet = document.getElementById('reduce-bet')
-reduceBet.addEventListener('click', Game.changeBet)
+reduceBet.addEventListener('click', changeBet)
 
 const increaseBet = document.getElementById('increase-bet')
-increaseBet.addEventListener('click', Game.changeBet)
+increaseBet.addEventListener('click', changeBet)
 
+function changeBet(event) {
+    const direction = event.target.id
+
+    if (game) {
+        if (direction === 'reduce-bet') {
+            return game.updateBet(Math.floor(game.bet * -.10))
+        } else if (direction === 'increase-bet') {
+            return game.updateBet(Math.floor(game.bet * .10) || 1)
+        }
+    }
+}
 
 // Fetch images from database function & create instances
 fetchImages()
@@ -157,6 +164,12 @@ function spinStart() {
         const playerMessage = playerMessageDiv.querySelector('p')
         playerMessage.innerText = `You won ${winMultiplier} X your bet!`
 
+        // Reset initial image array to winning images
+        initialImgArry[0] = winImg1
+        initialImgArry[1] = winImg2
+        initialImgArry[2] = winImg3
+
+
     }, (reel3SpinArry.length + 2)*150, winMultiplier)  
 }
 
@@ -214,4 +227,3 @@ function spin(reel, imageArry) {
         }, (i + 1)*150)  
     }
 }
-})
