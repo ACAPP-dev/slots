@@ -1,6 +1,7 @@
 
 // Event listener to run after html is parsed
 let game
+let user
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
@@ -21,8 +22,7 @@ newUserLink.addEventListener('click', ()=> {
 let logoutBar = document.getElementById('logout-bar')
 const logoutLink = logoutBar.querySelector('#logout-link')
 logoutLink.addEventListener('click', ()=> {
-    // need to save balance to database
-
+    // Need to remove balance from slot machine
     logoutBar.style.display = 'none'
     loginBar.style.display = 'block'
 })
@@ -75,6 +75,18 @@ function changeBet(event) {
         }
     }
 }
+
+const cashOut = document.getElementById('cash-out')
+cashOut.addEventListener('click', () => {
+    if (user) {
+        const amount = window.prompt('Enter withdrawal amount: ', '0')
+    }
+
+    if (amount > 0) {
+        processWithdrawal(amount)
+    }
+})
+
 
 // Fetch images from database function & create instances
 fetchImages()
