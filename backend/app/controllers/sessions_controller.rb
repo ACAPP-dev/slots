@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
             if user.authenticate(user_params[:password])
                 session[:username] = params[:username]
                 # byebug
-                render json: user.to_json(only: [:name, :username, :balance])
+                render json: user.to_json(only: [:id, :name, :username, :balance])
             else
                 render json: {error: "Password does not match!"}, status: not_found
             end

@@ -38,7 +38,7 @@ module Slots
     config.middleware.insert_before 0, Rack::Cors do 
       allow do
         origins '*'
-        resource('*', headers: :any, methods: [:get, :delete, :post, :options])
+        resource('*', headers: :any, methods: [:get, :patch, :delete, :post, :options])
       end
     end
     

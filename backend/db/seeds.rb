@@ -29,7 +29,7 @@ IMAGES = [
     {
         name: 'bar',
         source: 'bar.png',
-        win_code: 1
+        win_code: 0
     },
     # {
     #     name: 'cherry',
@@ -39,7 +39,7 @@ IMAGES = [
     {
         name: 'dollar',
         source: 'dollar.png',
-        win_code: 0
+        win_code: 1
     },
     {
         name: 'seven',

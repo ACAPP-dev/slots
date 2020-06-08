@@ -29,6 +29,5 @@ class TransactionsController < ApplicationController
 
     def trans_params
         params.permit([:transaction_type, :amount])
-
     end
 end

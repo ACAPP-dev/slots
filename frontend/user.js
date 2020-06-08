@@ -1,6 +1,7 @@
 
 class User {
-    constructor(name, username, balance) {
+    constructor(id, name, username, balance) {
+        this.id = id
         this.name = name
         this.username = username
         this.balance = balance
@@ -61,7 +62,7 @@ function createUser(event) {
 }
 
 function makeUser(json) {
-    user = new User(json.name, json.username, json.balance)
+    user = new User(json.id, json.name, json.username, json.balance)
     
     // change welcome message
     updateDisplay(user)
@@ -99,7 +100,7 @@ function updateDisplay(user) {
     newUserForm.reset()  
 }
 
-function processWithdrawal(type, amount) {
+function processTransaction(type, amount) {
     configObject = {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -126,4 +127,31 @@ function processWithdrawal(type, amount) {
             alert(`Error: ${error.statusText}`)
             return console.log('error! ' + error)
         })
+}
+
+function updateUserBalance() {
+    // persist balance to database after spin
+
+    configObject = {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({username: user.username, balance: user.balance})
+    }
+
+    fetch(`http://localhost:3000/users/${user.id}`, configObject)
+        .then (resp => {
+            if (!resp.ok) {
+                throw Error(resp.statusText)
+            } else {
+                return resp.json()}
+        })
+        .then (json => {
+            console.log(`Updated user balance after spin ${json.balance}`)
+            
+        })
+        .catch (error => {
+            alert(`Error: ${error.statusText}`)
+            return console.log('error! ' + error)
+        })
+
 }

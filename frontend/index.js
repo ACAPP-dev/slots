@@ -85,7 +85,7 @@ cashOut.addEventListener('click', () => {
     }
 
     if (amount > 0) {
-        processWithdrawal(2, amount)
+        processTransaction(2, amount)
     }
 })
 
@@ -98,7 +98,7 @@ deposit.addEventListener('click', () => {
     }
 
     if (amount > 0) {
-        processWithdrawal(1, amount)
+        processTransaction(1, amount)
     }
 })
 
@@ -192,6 +192,10 @@ function spinStart() {
         // debugger
         game.updateBalance(winAmount)
         game.updateWin(winAmount)
+
+        // update database with new user balance
+        user.balance = game.balance
+        updateUserBalance()
 
         const playerMessageDiv = document.getElementById('messages')
         const playerMessage = playerMessageDiv.querySelector('p')
