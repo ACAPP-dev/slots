@@ -5,12 +5,14 @@ class TransactionsController < ApplicationController
 
         if user
             user.transactions.build(trans_params)
-
-            if user.save
+            if params[:transaction_type] == 1
+                user.balance += params[:amount]
+            elsif params[:transaction_type] == 2
                 user.balance -= params[:amount]
-                user.save
+            end
+            if user.save
                 # byebug
-                render json: user.to_json(only: [:username, :amount])
+                render json: user.to_json(only: [:username, :balance])
             else
                 render json: {response: "Error - unable to process withdrawal"}, status: 406
             end

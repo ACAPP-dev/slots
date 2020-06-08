@@ -89,6 +89,21 @@ cashOut.addEventListener('click', () => {
     }
 })
 
+const deposit = document.getElementById('deposit')
+deposit.addEventListener('click', () => {
+    let amount = 0
+
+    if (user) {
+        amount = window.prompt('Enter deposit amount: ', '0')
+    }
+
+    if (amount > 0) {
+        processWithdrawal(1, amount)
+    }
+})
+
+
+
 
 // Fetch images from database function & create instances
 fetchImages()

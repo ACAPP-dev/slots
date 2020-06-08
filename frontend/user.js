@@ -114,8 +114,12 @@ function processWithdrawal(type, amount) {
                 return resp.json()}
         })
         .then (json => {
-            debugger
-            
+            // debugger
+            user.balance = json.balance
+            game.balance = user.balance
+            game.updateBalance()
+            game.updateBet()
+            alert("Transaction Complete!")
             
         })
         .catch (error => {
