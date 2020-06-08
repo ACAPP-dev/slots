@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :images, only: [:index]
   resources :users
   resources :sessions, only: [:create, :destroy]
-  resources :transactions, only: [:create, :destroy]
+  resources :transactions, only: [:index, :create]
 
 end

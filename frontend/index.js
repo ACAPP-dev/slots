@@ -78,12 +78,14 @@ function changeBet(event) {
 
 const cashOut = document.getElementById('cash-out')
 cashOut.addEventListener('click', () => {
+    let amount = 0
+
     if (user) {
-        const amount = window.prompt('Enter withdrawal amount: ', '0')
+        amount = window.prompt('Enter withdrawal amount: ', '0')
     }
 
     if (amount > 0) {
-        processWithdrawal(amount)
+        processWithdrawal(2, amount)
     }
 })
 

@@ -96,10 +96,30 @@ function updateDisplay(user) {
     loginDiv.style.display = 'none'
     newUserDiv.style.display = 'none'
     loginForm.reset()
-    newUserForm.reset()
+    newUserForm.reset()  
+}
 
-    
+function processWithdrawal(type, amount) {
+    configObject = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({username: user.username, transaction_type: type, amount: amount})
+    }
 
-
-    
+    fetch('http://localhost:3000/transactions', configObject)
+        .then (resp => {
+            if (!resp.ok) {
+                throw Error(resp.statusText)
+            } else {
+                return resp.json()}
+        })
+        .then (json => {
+            debugger
+            
+            
+        })
+        .catch (error => {
+            alert(`Error: ${error.statusText}`)
+            return console.log('error! ' + error)
+        })
 }
