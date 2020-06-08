@@ -81,11 +81,13 @@ cashOut.addEventListener('click', () => {
     let amount = 0
 
     if (user) {
-        amount = window.prompt('Enter withdrawal amount: ', '0')
+        amount = parseFloat(window.prompt('Enter withdrawal amount: ', '0'))
     }
 
-    if (amount > 0) {
+    if (amount > 0 && amount <= user.balance) {
         processTransaction(2, amount)
+    } else {
+        alert("Please enter valid withdrawal amount!")
     }
 })
 
@@ -94,7 +96,7 @@ deposit.addEventListener('click', () => {
     let amount = 0
 
     if (user) {
-        amount = window.prompt('Enter deposit amount: ', '0')
+        amount = parseFloat(window.prompt('Enter deposit amount: ', '0'))
     }
 
     if (amount > 0) {
