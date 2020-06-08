@@ -153,5 +153,17 @@ function updateUserBalance() {
             alert(`Error: ${error.statusText}`)
             return console.log('error! ' + error)
         })
+}
+
+function getTransactions() {
+    debugger
+        fetch(`http://localhost:3000/${user.id}`)
+        .then(resp => resp.json())
+        .then(json => {
+            console.log(json)
+        })
+
+
+
 
 }

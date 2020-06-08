@@ -76,6 +76,10 @@ function changeBet(event) {
     }
 }
 
+const viewTransactions = document.getElementById('view-transactions')
+viewTransactions.addEventListener('click', ()=> getTransactions)
+
+
 const cashOut = document.getElementById('cash-out')
 cashOut.addEventListener('click', () => {
     let amount = 0

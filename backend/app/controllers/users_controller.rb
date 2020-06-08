@@ -11,8 +11,15 @@ class UsersController < ApplicationController
         end
     end
 
-    def edit
-
+    def show
+    
+        if user = User.find_by(id: params[:id])
+            trans = Transaction.last_5(user)
+            byebug
+            render json: trans.to_json(only: [:transaction_type, :amount, :created_at])
+        else
+            render json: {error: "Unable to get transactions"}, status: 404
+        end
     end
 
     def update
