@@ -237,7 +237,7 @@ img {
     display: none;
 }
 
-#display-transactions-table {
+#transactions-table {
     width: 100%;
     margin: 25px auto;
     table-layout: auto;

@@ -168,8 +168,21 @@ function getTransactions() {
 
 function displayTransactions(json) {
 
-    const table = tableDiv.querySelector('#display-transactions-table tbody')
-    
+    // transactionTable = tableDiv.querySelector('#display-transactions-table tbody')
+    transactionTable = document.createElement('table')
+    transactionTable.id = 'transactions-table'
+
+    const tableRow = document.createElement('tr')
+    const tableHead1 = document.createElement('th')
+    const tableHead2 = document.createElement('th')
+    const tableHead3 = document.createElement('th')
+    tableHead1.innerText = 'Date'
+    tableRow.append(tableHead1)
+    tableHead2.innerText = 'Type'
+    tableRow.append(tableHead2)
+    tableHead3.innerText = 'Amount'
+    tableRow.append(tableHead3)
+    transactionTable.appendChild(tableRow)
 
     for (const trans of json) {
     const tableRow = document.createElement('tr')
@@ -188,9 +201,8 @@ function displayTransactions(json) {
     tableData3.innerText = Game.numberFormat(trans.amount)
     tableRow.appendChild(tableData3)
 
-    table.appendChild(tableRow)
+    transactionTable.appendChild(tableRow)
     }
+    tableDiv.appendChild(transactionTable)
     tableDiv.style.display = 'block'
-
-
 }

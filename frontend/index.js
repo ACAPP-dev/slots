@@ -2,10 +2,14 @@
 // Event listener to run after html is parsed
 let game
 let user
+let transactionTable
 
 const tableDiv = document.getElementById('display-transactions-div')
 const hideTransTable = tableDiv.querySelector('button')
-hideTransTable.addEventListener('click', ()=> tableDiv.style.display = 'none')
+hideTransTable.addEventListener('click', ()=> {
+    tableDiv.style.display = 'none'
+    tableDiv.removeChild(transactionTable)
+})
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
