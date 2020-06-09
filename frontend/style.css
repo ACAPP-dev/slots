@@ -219,3 +219,16 @@ img {
     top: 50%;
     transform: translateY(-50%); */
 }
+
+#display-transactions-div {
+    border: 1px solid black;
+    margin: auto;
+    width: 50%;
+}
+
+#display-transactions-table {
+    width: 100%;
+    margin: 25px auto;
+    table-layout: auto;
+    text-align: center;
+}

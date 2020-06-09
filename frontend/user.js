@@ -156,13 +156,37 @@ function updateUserBalance() {
 }
 
 function getTransactions() {
-    debugger
-        fetch(`http://localhost:3000/${user.id}`)
+    if (user) {
+        fetch(`http://localhost:3000/users/${user.id}`)
         .then(resp => resp.json())
         .then(json => {
             console.log(json)
+            displayTransactions(json)
         })
+    } else {alert("Please log in to view transactions!")}
+}
 
+function displayTransactions(json) {
+    const table = document.getElementById('display-transaction-table')
+
+    for (const trans of json) {
+    const tableRow = document.createElement('tr')
+    const tableData1 = document.createElement('td')
+    const tableData2 = document.createElement('td')
+    const tableData3 = document.createElement('td')
+
+    tableData1.innerText = trans.created_at
+    tableRow.appendChild(tableData1)
+
+    const typeString = trans.transaction_type === 1 ? 'Deposit' : 'Withdrawal' 
+    tableData2.innerText = typeString
+    tableRow.appendChild(tableData2)
+
+    tableData3.innerText = trans.amount
+    tableRow.appendChild(tableData3)
+
+    table.appendChild(tableRow)
+    }
 
 
 
