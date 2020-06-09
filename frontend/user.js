@@ -167,15 +167,16 @@ function getTransactions() {
 }
 
 function displayTransactions(json) {
-    const table = document.getElementById('display-transaction-table')
+    const table = document.querySelector('#display-transactions-table tbody')
 
     for (const trans of json) {
     const tableRow = document.createElement('tr')
     const tableData1 = document.createElement('td')
     const tableData2 = document.createElement('td')
     const tableData3 = document.createElement('td')
-
-    tableData1.innerText = trans.created_at
+        // debugger
+    const transDate = new Date(trans.created_at)
+    tableData1.innerText = `${transDate.getMonth() + 1}/${transDate.getDate()}/${transDate.getFullYear()}`
     tableRow.appendChild(tableData1)
 
     const typeString = trans.transaction_type === 1 ? 'Deposit' : 'Withdrawal' 
