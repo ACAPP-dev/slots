@@ -3,6 +3,10 @@
 let game
 let user
 
+const tableDiv = document.getElementById('display-transactions-div')
+const hideTransTable = tableDiv.querySelector('button')
+hideTransTable.addEventListener('click', ()=> tableDiv.style.display = 'none')
+
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
 const loginDiv = document.getElementById('log-in-div')

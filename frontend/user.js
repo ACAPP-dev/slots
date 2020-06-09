@@ -167,7 +167,9 @@ function getTransactions() {
 }
 
 function displayTransactions(json) {
-    const table = document.querySelector('#display-transactions-table tbody')
+
+    const table = tableDiv.querySelector('#display-transactions-table tbody')
+    
 
     for (const trans of json) {
     const tableRow = document.createElement('tr')
@@ -183,12 +185,12 @@ function displayTransactions(json) {
     tableData2.innerText = typeString
     tableRow.appendChild(tableData2)
 
-    tableData3.innerText = trans.amount
+    tableData3.innerText = Game.numberFormat(trans.amount)
     tableRow.appendChild(tableData3)
 
     table.appendChild(tableRow)
     }
-
+    tableDiv.style.display = 'block'
 
 
 }

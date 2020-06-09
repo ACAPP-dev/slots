@@ -10,6 +10,14 @@ h3 {
     text-align: center;
 }
 
+p {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
 #login-bar {
     display: block;
 
@@ -222,13 +230,16 @@ img {
 
 #display-transactions-div {
     border: 1px solid black;
-    margin: auto;
+    margin: 3px auto;
     width: 50%;
+    align-items: center;
+    text-align: center;
+    display: none;
 }
 
 #display-transactions-table {
     width: 100%;
     margin: 25px auto;
     table-layout: auto;
-    text-align: center;
+    /* text-align: center; */
 }
