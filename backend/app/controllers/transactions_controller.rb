@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
     def create
-        user = User.find_by(username: params[:username])
+        user = User.find_by(id: params[:id])
 
         if user
             user.transactions.build(trans_params)

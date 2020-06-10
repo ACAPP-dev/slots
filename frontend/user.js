@@ -93,7 +93,7 @@ function processTransaction(type, amount) {
     configObject = {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        body: JSON.stringify({username: user.username, transaction_type: type, amount: parseFloat(amount)})
+        body: JSON.stringify({id: user.id, transaction_type: type, amount: parseFloat(amount)})
     }
 
     fetch('http://localhost:3000/transactions', configObject)
