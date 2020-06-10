@@ -80,6 +80,30 @@ function changeBet(event) {
     }
 }
 
+const bet1Btn = document.getElementById('bet1-btn')
+bet1Btn.addEventListener('click', fixedBet)
+const bet2Btn = document.getElementById('bet2-btn')
+bet2Btn.addEventListener('click', fixedBet)
+const bet3Btn = document.getElementById('bet3-btn')
+bet3Btn.addEventListener('click', fixedBet)
+
+function fixedBet(event) {
+    if (user && game) {
+        let fixedBet = 0
+        switch (event.target.id) {
+            case 'bet1-btn': fixedBet = 10.0
+            break
+            case 'bet2-btn': fixedBet = 50.0
+            break
+            case 'bet3-btn': fixedBet = 100.0
+        }
+        game.bet = fixedBet
+        game.updateBet()
+        console.log(fixedBet)
+    }
+
+}
+
 const viewTransactionsBtn = document.getElementById('view-transactions-btn')
 viewTransactionsBtn.addEventListener('click', ()=>{
     displayTransactionsDiv = document.getElementById('display-transactions-div')
