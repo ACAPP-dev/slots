@@ -87,6 +87,24 @@ function changeBet(event) {
 const viewTransactions = document.getElementById('view-transactions')
 viewTransactions.addEventListener('click', getTransactions)
 
+const payoutsDiv = document.getElementById('payouts-div')
+const payoutsBtn = document.getElementById('payouts')
+payoutsBtn.addEventListener('click', displayPayouts)
+    
+function displayPayouts() {
+    
+    console.log(payoutsDiv.className)
+    if (payoutsDiv.className === 'hidden') {
+        payoutsDiv.style.display = 'block'
+        payoutsBtn.innerText = 'Hide Payouts'
+        payoutsDiv.className = 'visible'
+        
+    } else if (payoutsDiv.className === 'visible') {
+        payoutsDiv.style.display = 'none'
+        payoutsBtn.innerText = 'View Payouts'
+        payoutsDiv.className = 'hidden'
+    }
+}
 
 const cashOut = document.getElementById('cash-out')
 cashOut.addEventListener('click', () => {

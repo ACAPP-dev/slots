@@ -101,7 +101,7 @@
                 <button id='spin-button'>Spin</button>
             </div>
 
-            <div class='bottom-divs-row2' id='payout-button-div'>
+            <div class='bottom-divs-row2' id='payouts-button-div'>
                 <button id='payouts'>View Payouts</button>
             </div>
 
@@ -125,20 +125,30 @@
         <button id='trans-table-button'>Hide Transactions</button>
     </div>
 
-    <div id='payouts-div'>
+    <div class='hidden' id='payouts-div'>
         <h3>Payout Statistics</h3>
         <table>
-            <th>
-                <td>Symbol</td>
-                <td>Payout</td>
-            </th>
             <tr>
-                <td>Dollar ($)</td>
-                <td>1: 2 times bet</td>
+                <th>Symbol</th>
+                <th>Payout</th>
             </tr>
-
-        </table>>
-
+            <tr>
+                <td>1 Dollar Symbol</td>
+                <td>2 times bet</td>
+            </tr>
+            <tr>
+                <td>2 Dollar Symbols</td>
+                <td>5 times bet</td>
+            </tr>
+            <tr>
+                <td>Any 3 Fruit</td>
+                <td>2 times bet</td>
+            </tr>
+            <tr>
+                <td>Any 3 Same Symbols</td>
+                <td>10 times bet</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
