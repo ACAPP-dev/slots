@@ -5,11 +5,7 @@ let user
 let transactionTable
 
 const tableDiv = document.getElementById('display-transactions-div')
-const hideTransTable = tableDiv.querySelector('button')
-hideTransTable.addEventListener('click', ()=> {
-    tableDiv.style.display = 'none'
-    tableDiv.removeChild(transactionTable)
-})
+let displayTransactionsDiv = document.getElementById('display-transactions-div')
 
 let loginBar = document.getElementById('login-bar')
 const loginLink = loginBar.querySelector('#login-link')
@@ -84,8 +80,17 @@ function changeBet(event) {
     }
 }
 
-const viewTransactions = document.getElementById('view-transactions')
-viewTransactions.addEventListener('click', getTransactions)
+const viewTransactionsBtn = document.getElementById('view-transactions-btn')
+viewTransactionsBtn.addEventListener('click', ()=>{
+    displayTransactionsDiv = document.getElementById('display-transactions-div')
+    if (displayTransactionsDiv.className === 'hidden') {
+        getTransactions()
+    } else if (displayTransactionsDiv.className === 'visible') {
+        displayTransactionsDiv.style.display = 'none'
+        displayTransactionsDiv.className = 'hidden'
+        viewTransactionsBtn.innerText = 'Last 5 Transactions'
+    }
+})
 
 const payoutsDiv = document.getElementById('payouts-div')
 const payoutsBtn = document.getElementById('payouts')

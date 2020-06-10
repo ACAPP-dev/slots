@@ -164,7 +164,10 @@ function getTransactions() {
 }
 
 function displayTransactions(json) {
-
+    const existingTable = document.getElementById('transactions-table')
+    if (existingTable) {
+        existingTable.parentElement.removeChild(existingTable)
+    }
     // transactionTable = tableDiv.querySelector('#display-transactions-table tbody')
     transactionTable = document.createElement('table')
     transactionTable.id = 'transactions-table'
@@ -182,24 +185,26 @@ function displayTransactions(json) {
     transactionTable.appendChild(tableRow)
 
     for (const trans of json) {
-    const tableRow = document.createElement('tr')
-    const tableData1 = document.createElement('td')
-    const tableData2 = document.createElement('td')
-    const tableData3 = document.createElement('td')
-        // debugger
-    const transDate = new Date(trans.created_at)
-    tableData1.innerText = `${transDate.getMonth() + 1}/${transDate.getDate()}/${transDate.getFullYear()}`
-    tableRow.appendChild(tableData1)
+        const tableRow = document.createElement('tr')
+        const tableData1 = document.createElement('td')
+        const tableData2 = document.createElement('td')
+        const tableData3 = document.createElement('td')
+            // debugger
+        const transDate = new Date(trans.created_at)
+        tableData1.innerText = `${transDate.getMonth() + 1}/${transDate.getDate()}/${transDate.getFullYear()}`
+        tableRow.appendChild(tableData1)
 
-    const typeString = trans.transaction_type === 1 ? 'Deposit' : 'Withdrawal' 
-    tableData2.innerText = typeString
-    tableRow.appendChild(tableData2)
+        const typeString = trans.transaction_type === 1 ? 'Deposit' : 'Withdrawal' 
+        tableData2.innerText = typeString
+        tableRow.appendChild(tableData2)
 
-    tableData3.innerText = Game.numberFormat(trans.amount)
-    tableRow.appendChild(tableData3)
+        tableData3.innerText = Game.numberFormat(trans.amount)
+        tableRow.appendChild(tableData3)
 
-    transactionTable.appendChild(tableRow)
+        transactionTable.appendChild(tableRow)
     }
     tableDiv.appendChild(transactionTable)
-    tableDiv.style.display = 'block'
+    displayTransactionsDiv.style.display = 'block'
+    displayTransactionsDiv.className = "visible"
+    viewTransactionsBtn.innerText = 'Hide Transactions'
 }
