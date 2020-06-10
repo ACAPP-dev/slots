@@ -55,82 +55,90 @@
 
     <div id='player-info'>
         <h2></h2>
-
-
     </div>
 
     <div id='container'>
 
-    <div class='slot' id='top'>
-        <h1>Good Luck!</h1>
+        <div class='slot' id='top'>
+            <h1>Good Luck!</h1>
+        </div>
 
-    </div>
-
-    <div class='slot' id='slot'>
-        <div class='reels' id='reel-1'>
+        <div class='slot' id='slot'>
+            <div class='reels' id='reel-1'>
+                
+            </div>
+            <div class='reels' id='reel-2'>
             
+            </div>
+            <div class='reels' id='reel-3'>
+            
+            </div>
         </div>
-        <div class='reels' id='reel-2'>
-          
-        </div>
-        <div class='reels' id='reel-3'>
-         
-        </div>
-    </div>
     
-    <div class='slot' id='bottom'>
-        <div class='bottom-divs-row1' id='display-balance-div'>
-            <p>Account Balance</p>
-            <p id='balance'>Balance Display</p>
-            <button id='view-transactions'>Last 5 Transactions</button>
-        </div>
+        <div class='slot' id='bottom'>
+            <div class='bottom-divs-row1' id='display-balance-div'>
+                <p>Account Balance</p>
+                <p id='balance'>Balance Display</p>
+                <button id='view-transactions'>Last 5 Transactions</button>
+            </div>
 
-        <div class='bottom-divs-row1' id='bet-div'>
-            <p>Bet</p>
-            <p>
-                <span id='reduce-bet'>-</span>
-                <span id='bet-amount'>Bet Display</span>
-                <span id='increase-bet'>+</span>
-            </p>
-            <p>Bet Amount Boxes?</p>
-        </div>
+            <div class='bottom-divs-row1' id='bet-div'>
+                <p>Bet</p>
+                <p>
+                    <span id='reduce-bet'>-</span>
+                    <span id='bet-amount'>Bet Display</span>
+                    <span id='increase-bet'>+</span>
+                </p>
+                <p>Bet Amount Boxes?</p>
+            </div>
 
-        <div class='bottom-divs-row1' id='display-win-div'>
-            <p>Win</p>
-            <p id='win'>Display Win</p>
-        </div>
+            <div class='bottom-divs-row1' id='display-win-div'>
+                <p>Win</p>
+                <p id='win'>Display Win</p>
+            </div>
 
-        <div class='bottom-divs-row1' id='spin-button-div'>
-            <button id='spin-button'>Spin</button>
-        </div>
+            <div class='bottom-divs-row1' id='spin-button-div'>
+                <button id='spin-button'>Spin</button>
+            </div>
 
-        <div class='bottom-divs-row2' id='payout-button-div'>
-            <button id='rules'>Game Rules</button>
-        </div>
+            <div class='bottom-divs-row2' id='payout-button-div'>
+                <button id='payouts'>View Payouts</button>
+            </div>
 
-        <div class='bottom-divs-row2' id='messages'>
+            <div class='bottom-divs-row2' id='messages'>
 
-        </div>
+            </div>
 
-        <div class='bottom-divs-row2' id='cashout-button-div'>
-            <button id='cash-out'>Withdrawal</button>
-        </div>
-        
-        <div class='bottom-divs-row2' id='deposit-button-div'>
-            <button id='deposit'>Deposit</button>
+            <div class='bottom-divs-row2' id='cashout-button-div'>
+                <button id='cash-out'>Withdrawal</button>
+            </div>
+            
+            <div class='bottom-divs-row2' id='deposit-button-div'>
+                <button id='deposit'>Deposit</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div id='display-transactions-div'>
-    <p>Last 5 Transactions</p>
-    <table id='transactions-table'>
-        
-        
-    </table>
-    <button id='trans-table-button'>Hide Transactions</button>
-</div>
+    <div id='display-transactions-div'>
+        <p>Last 5 Transactions</p>
+       
+        <button id='trans-table-button'>Hide Transactions</button>
+    </div>
 
+    <div id='payouts-div'>
+        <h3>Payout Statistics</h3>
+        <table>
+            <th>
+                <td>Symbol</td>
+                <td>Payout</td>
+            </th>
+            <tr>
+                <td>Dollar ($)</td>
+                <td>1: 2 times bet</td>
+            </tr>
+
+        </table>>
+
+    </div>
 </body>
-
 </html>

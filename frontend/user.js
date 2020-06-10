@@ -77,11 +77,8 @@ function makeUser(json) {
     game.updateBet()
     game.updateWin()
 
-    
-
     const message = document.getElementById('message-text')
     message.innerText = 'Ready to Spin!'
-
 }
 
 function updateDisplay(user) {
