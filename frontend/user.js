@@ -8,6 +8,8 @@ class User {
     }
 }
 
+// User Related Functions
+
 function loginUser(event) {
     event.preventDefault()
 
@@ -64,20 +66,14 @@ function createUser(event) {
 function makeUser(json) {
     user = new User(json.id, json.name, json.username, json.balance)
     
-    // change welcome message
     updateDisplay(user)
 
-    // load balance in slot machine
-    // hide forms and display log out message
-    console.log(user)
-    // debugger
     // Create game instance and load balance in slot machine
     game = new Game(user.name, user.balance)
     game.updateBalance()
     game.updateBet()
     game.updateWin()
     playerMessage.innerText = `Good Luck ${user.name}!`
-
     slotMessage.innerText = 'Ready to Spin!'
 }
 
@@ -112,13 +108,11 @@ function processTransaction(type, amount) {
                 return resp.json()}
         })
         .then (json => {
-            // debugger
             user.balance = json.balance
             game.balance = user.balance
             game.updateBalance()
             game.updateBet()
             alert("Transaction Complete!")
-            
         })
         .catch (error => {
             alert(`Error: ${error.statusText}`)
@@ -168,7 +162,6 @@ function displayTransactions(json) {
     if (existingTable) {
         existingTable.parentElement.removeChild(existingTable)
     }
-    // transactionTable = tableDiv.querySelector('#display-transactions-table tbody')
     transactionTable = document.createElement('table')
     transactionTable.id = 'transactions-table'
 
@@ -189,7 +182,6 @@ function displayTransactions(json) {
         const tableData1 = document.createElement('td')
         const tableData2 = document.createElement('td')
         const tableData3 = document.createElement('td')
-            // debugger
         const transDate = new Date(trans.created_at)
         tableData1.innerText = `${transDate.getMonth() + 1}/${transDate.getDate()}/${transDate.getFullYear()}`
         tableRow.appendChild(tableData1)

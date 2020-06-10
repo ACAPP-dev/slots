@@ -1,5 +1,4 @@
 
-// Event listener to run after html is parsed
 let game
 let user
 let transactionTable
@@ -21,7 +20,6 @@ newUserLink.addEventListener('click', ()=> {
     loginDiv.style.display = 'none'
     newUserDiv.style.display = 'block'
 })
-
 
 let logoutBar = document.getElementById('logout-bar')
 const logoutLink = logoutBar.querySelector('#logout-link')
@@ -52,7 +50,6 @@ const reelArry = [reel1, reel2, reel3]
 const initialImgArry = []
 
 const img = document.createElement('img')
-
 
 let reel1Img = reel1.querySelector('img')
 let reel2Img = reel2.querySelector('img')
@@ -102,7 +99,6 @@ function fixedBet(event) {
         game.updateBet()
         console.log(fixedBet)
     }
-
 }
 
 const viewTransactionsBtn = document.getElementById('view-transactions-btn')
@@ -122,8 +118,6 @@ const payoutsBtn = document.getElementById('payouts')
 payoutsBtn.addEventListener('click', displayPayouts)
     
 function displayPayouts() {
-    
-    console.log(payoutsDiv.className)
     if (payoutsDiv.className === 'hidden') {
         payoutsDiv.style.display = 'block'
         payoutsBtn.innerText = 'Hide Payouts'
@@ -164,15 +158,8 @@ deposit.addEventListener('click', () => {
     }
 })
 
-
-
-
 // Fetch images from database function & create instances
 fetchImages()
 
-
-
 // Spin functionality
-
 btnSpin.addEventListener('click', spinStart)
-

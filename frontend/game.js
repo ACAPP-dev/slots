@@ -15,7 +15,6 @@ class Game {
     }
 
     updateBet(change = 0) {
-        
         betDisplay.innerText = Game.numberFormat(this.bet += change)
     }
 
@@ -38,6 +37,8 @@ class Game {
         return numArry.join('.')
     }  
 }
+
+// Game Related Functions
 
 function spinStart() {
     if(game) {
@@ -76,10 +77,7 @@ function spinStart() {
         spin(reelArry[2], reel3SpinArry)
 
         // delay remaining function until spins are finished
-
         window.setTimeout(()=> {
-            // add remaining function to display win
-            
             const winAmount = game.bet * winMultiplier
 
             game.updateBalance(winAmount)
@@ -145,7 +143,6 @@ function spin(reel, imageArry) {
             reel.removeChild(reelImg)
             const img = document.createElement('img')
             img.src = imageArry[i].source
-            // reel1Img.classList.add('img-spin')
             reel.appendChild(img)
         }, (i + 1)*150)  
     }
