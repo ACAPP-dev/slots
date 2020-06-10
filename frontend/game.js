@@ -26,6 +26,13 @@ class Game {
         winDisplay.innerText = Game.numberFormat(win)
     }
 
+    clearDisplays() {
+        balanceDisplay.innerText = '--'
+        betDisplay.innerText = '--'
+        winDisplay.innerText = '--'
+        
+    }
+
     static numberFormat(number) {
         const numArry = Math.round(number).toString().split(".")
 

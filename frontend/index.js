@@ -26,7 +26,7 @@ newUserLink.addEventListener('click', ()=> {
 let logoutBar = document.getElementById('logout-bar')
 const logoutLink = logoutBar.querySelector('#logout-link')
 logoutLink.addEventListener('click', ()=> {
-    // Need to remove balance from slot machine
+    game.clearDisplays()
     logoutBar.style.display = 'none'
     loginBar.style.display = 'block'
 })
