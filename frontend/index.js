@@ -42,6 +42,7 @@ const fetchImagesURL = 'http://localhost:3000/images'
 const winObject = []
 
 const container = document.getElementById('container')
+const playerMessage = document.getElementById('player-message')
 const btnSpin = document.getElementById('spin-button')
 const reel1 = document.getElementById('reel-1')
 const reel2 = document.getElementById('reel-2')

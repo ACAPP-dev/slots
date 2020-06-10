@@ -76,6 +76,7 @@ function makeUser(json) {
     game.updateBalance()
     game.updateBet()
     game.updateWin()
+    playerMessage.innerText = `Good Luck ${user.name}!`
 
     const message = document.getElementById('message-text')
     message.innerText = 'Ready to Spin!'

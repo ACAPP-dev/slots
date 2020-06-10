@@ -3,7 +3,6 @@ const balanceDisplay = document.getElementById('balance')
 const betDisplay = document.getElementById('bet-amount')
 const winDisplay = document.getElementById('win')
 
-
 class Game {
     constructor(name, balance) {
         this.name = name
@@ -30,7 +29,7 @@ class Game {
         balanceDisplay.innerText = '--'
         betDisplay.innerText = '--'
         winDisplay.innerText = '--'
-
+        playerMessage.innerText = 'Good Luck!'
     }
 
     static numberFormat(number) {
@@ -39,14 +38,15 @@ class Game {
         numArry[0] = '$' + numArry[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         return numArry.join('.')
 
-    }
-
-    
+    }  
 }
 
 function spinStart() {
     if(game) {
-        if (game.balance <= game.bet) {
+        if (game.bet <= 1) {
+            return alert("Bet must be greater than 0 to spin!")
+        }
+        else if (game.balance <= game.bet) {
             return alert("Make a deposit to continue playing!")
         }
 
