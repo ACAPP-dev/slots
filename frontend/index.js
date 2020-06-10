@@ -61,7 +61,7 @@ let reel1Selection = 0
 let reel2Selection = 0
 let reel3Selection = 0
 
-const playerMessageDiv = document.getElementById('messages')
+const slotMessage = document.getElementById('slot-message')
 
 const reduceBet = document.getElementById('reduce-bet')
 reduceBet.addEventListener('click', changeBet)
@@ -171,11 +171,6 @@ deposit.addEventListener('click', () => {
 fetchImages()
 
 
-
-const greeting = document.createElement('p')
-greeting.id = 'message-text'
-greeting.innerText = 'Hello Slot Player!'
-playerMessageDiv.appendChild(greeting)
 
 // Spin functionality
 

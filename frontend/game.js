@@ -10,8 +10,6 @@ class Game {
         this.bet = balance / 100
     }
 
-    // add methods including spin?
-
     updateBalance(win = 0) {
         balanceDisplay.innerText = Game.numberFormat(this.balance += win)
     }
@@ -30,6 +28,7 @@ class Game {
         betDisplay.innerText = '--'
         winDisplay.innerText = '--'
         playerMessage.innerText = 'Good Luck!'
+        slotMessage.innerText = 'Hello Slot Player!'
     }
 
     static numberFormat(number) {
@@ -37,7 +36,6 @@ class Game {
 
         numArry[0] = '$' + numArry[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         return numArry.join('.')
-
     }  
 }
 
@@ -59,6 +57,7 @@ function spinStart() {
         const winImg3 = IMAGES[generateRandom()]
         const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
         const winCodeArry = [winImg1.win_code, winImg2.win_code, winImg3.win_code]
+        
         // Calculate win amount (if any)
         const winMultiplier = calcWin(winArry, winCodeArry)
         console.log(`Win Multiplier: ${winMultiplier}`)
@@ -67,7 +66,7 @@ function spinStart() {
         const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
         const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 2)
         const reel3SpinArry = createSpinArry(initialImgArry[2], winImg3, 3)
-        // debugger
+        
         // start spin in slot machine
         spin(reelArry[0], reel1SpinArry)
         spin(reelArry[1], reel2SpinArry)
@@ -79,24 +78,20 @@ function spinStart() {
             // add remaining function to display win
             
             const winAmount = game.bet * winMultiplier
-            // const newBalance = game.balance += winAmount
-            // debugger
+
             game.updateBalance(winAmount)
             game.updateWin(winAmount)
 
             // update database with new user balance
             user.balance = game.balance
             updateUserBalance()
-
-            const playerMessageDiv = document.getElementById('messages')
-            const playerMessage = playerMessageDiv.querySelector('p')
-            playerMessage.innerText = `You won ${winMultiplier} X your bet!`
+            
+            slotMessage.innerText = `You won ${winMultiplier} X your bet!`
 
             // Reset initial image array to winning images
             initialImgArry[0] = winImg1
             initialImgArry[1] = winImg2
             initialImgArry[2] = winImg3
-
 
         }, (reel3SpinArry.length + 2)*150, winMultiplier) 
     } 
@@ -105,9 +100,6 @@ function spinStart() {
 function calcWin(winArry, winCodeArry) {
     console.log(`Win Array: ${winArry}`)
     console.log(`Win Code Array: ${winCodeArry}`)
-    // const sortedWinArry = winArry.sort().join()
-    
-    // console.log(`Sorted Win Array: ${sortedWinArry}`)
 
     if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
         console.log('all elements match!')
