@@ -27,6 +27,8 @@ logoutLink.addEventListener('click', ()=> {
     game.clearDisplays()
     logoutBar.style.display = 'none'
     loginBar.style.display = 'block'
+    user = null
+    game = null
 })
 
 let loginForm = document.getElementById('log-in-form')
@@ -135,12 +137,12 @@ cashOut.addEventListener('click', () => {
 
     if (user) {
         amount = parseFloat(window.prompt('Enter withdrawal amount: ', '0'))
-    }
 
-    if (amount > 0 && amount <= user.balance) {
-        processTransaction(2, amount)
-    } else {
-        alert("Please enter valid withdrawal amount!")
+        if (amount > 0 && amount <= user.balance) {
+            processTransaction(2, amount)
+        } else {
+            alert("Please enter valid withdrawal amount!")
+        }
     }
 })
 
