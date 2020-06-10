@@ -45,60 +45,61 @@ class Game {
 }
 
 function spinStart() {
+    if(game) {
+        if (game.balance <= game.bet) {
+            return alert("Make a deposit to continue playing!")
+        }
 
-    if (game.balance <= game.bet) {
-        return alert("Make a deposit to continue playing!")
-    }
+        game.balance -= game.bet
+        game.updateBalance()
 
-    game.balance -= game.bet
-    game.updateBalance()
+        // Select final image for each reel
+        const winImg1 = IMAGES[generateRandom()]
+        const winImg2 = IMAGES[generateRandom()]
+        const winImg3 = IMAGES[generateRandom()]
+        const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
+        const winCodeArry = [winImg1.win_code, winImg2.win_code, winImg3.win_code]
+        // Calculate win amount (if any)
+        const winMultiplier = calcWin(winArry, winCodeArry)
+        console.log(`Win Multiplier: ${winMultiplier}`)
 
-    // Select final image for each reel
-    const winImg1 = IMAGES[generateRandom()]
-    const winImg2 = IMAGES[generateRandom()]
-    const winImg3 = IMAGES[generateRandom()]
-    const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
-    const winCodeArry = [winImg1.win_code, winImg2.win_code, winImg3.win_code]
-    // Calculate win amount (if any)
-    const winMultiplier = calcWin(winArry, winCodeArry)
-    console.log(`Win Multiplier: ${winMultiplier}`)
-
-    // Generate array of images to be displayed in succession for each reel
-    const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
-    const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 2)
-    const reel3SpinArry = createSpinArry(initialImgArry[2], winImg3, 3)
-    // debugger
-    // start spin in slot machine
-    spin(reelArry[0], reel1SpinArry)
-    spin(reelArry[1], reel2SpinArry)
-    spin(reelArry[2], reel3SpinArry)
-
-    // delay remaining function until spins are finished
-
-    window.setTimeout(()=> {
-        // add remaining function to display win
-        
-        const winAmount = game.bet * winMultiplier
-        // const newBalance = game.balance += winAmount
+        // Generate array of images to be displayed in succession for each reel
+        const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
+        const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 2)
+        const reel3SpinArry = createSpinArry(initialImgArry[2], winImg3, 3)
         // debugger
-        game.updateBalance(winAmount)
-        game.updateWin(winAmount)
+        // start spin in slot machine
+        spin(reelArry[0], reel1SpinArry)
+        spin(reelArry[1], reel2SpinArry)
+        spin(reelArry[2], reel3SpinArry)
 
-        // update database with new user balance
-        user.balance = game.balance
-        updateUserBalance()
+        // delay remaining function until spins are finished
 
-        const playerMessageDiv = document.getElementById('messages')
-        const playerMessage = playerMessageDiv.querySelector('p')
-        playerMessage.innerText = `You won ${winMultiplier} X your bet!`
+        window.setTimeout(()=> {
+            // add remaining function to display win
+            
+            const winAmount = game.bet * winMultiplier
+            // const newBalance = game.balance += winAmount
+            // debugger
+            game.updateBalance(winAmount)
+            game.updateWin(winAmount)
 
-        // Reset initial image array to winning images
-        initialImgArry[0] = winImg1
-        initialImgArry[1] = winImg2
-        initialImgArry[2] = winImg3
+            // update database with new user balance
+            user.balance = game.balance
+            updateUserBalance()
+
+            const playerMessageDiv = document.getElementById('messages')
+            const playerMessage = playerMessageDiv.querySelector('p')
+            playerMessage.innerText = `You won ${winMultiplier} X your bet!`
+
+            // Reset initial image array to winning images
+            initialImgArry[0] = winImg1
+            initialImgArry[1] = winImg2
+            initialImgArry[2] = winImg3
 
 
-    }, (reel3SpinArry.length + 2)*150, winMultiplier)  
+        }, (reel3SpinArry.length + 2)*150, winMultiplier) 
+    } 
 }
 
 function calcWin(winArry, winCodeArry) {
@@ -123,7 +124,6 @@ function calcWin(winArry, winCodeArry) {
         console.log('Includes all 3s!')
         return 2
     } else { return 0}
-    
 }
 
 function createSpinArry(initialImage, winImage, spins) {

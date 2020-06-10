@@ -14,6 +14,11 @@ p {
     text-align: center;
 }
 
+button {
+    background-color: palegoldenrod;
+    
+}
+
 th {
     text-align: center;
 }
@@ -141,24 +146,6 @@ img {
     animation-timing-function: linear;
 }
 
-/* code for image spin animation (see w3schools) */
-
-/* use css transform properties for 3D instead?? */
-
-@keyframes spin {
-    0% {top: -150px;}
-    10% {top: -50px;}
-    20% {top: 25px;}
-    30% {top: 75px;}
-    40% {top: 125px;}
-    50% {top: 175px;}
-    60% {top: 225px;}
-    70% {top: 275px;}
-    80% {top: 325px;}
-    90% {top: 375px;}
-    100% {top: 425px;}
-}
-
 #bottom {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -169,15 +156,14 @@ img {
 .bottom-divs-row1{
     height: 120px;
     border: solid 1px black;
-
 }
 
 .bottom-divs-row2{
     height: 35px;
-    /* margin: auto; */
     border: solid 1px black;
-  
-    
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 #display-balance-div {
