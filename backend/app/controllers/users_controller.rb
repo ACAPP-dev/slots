@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     def show
     
         if user = User.find_by(id: params[:id])
-            # byebug
             trans = User.last_5_transactions(user)
         
             render json: trans.to_json(only: [:transaction_type, :amount, :created_at])
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
     end
 
     def update
-        # byebug
         if user = User.find_by(id: params[:id])
             user.update(balance: params[:balance])
             render json: user.to_json(only: [:username, :balance])

@@ -27,7 +27,6 @@ function loginUser(event) {
                 return resp.json()}
         })
         .then (json => {
-            console.log('User Logged In')
             makeUser(json)
         })
         .catch (error => {
@@ -52,15 +51,12 @@ function createUser(event) {
                 return resp.json()}
         })
         .then (json => {
-            console.log('User Created and Logged In')
             makeUser(json)
         })
         .catch (error => {
             alert(`Error: ${error.statusText}`)
             return console.log('error! ' + error)
         })
-
-
 }
 
 function makeUser(json) {
@@ -136,9 +132,7 @@ function updateUserBalance() {
             } else {
                 return resp.json()}
         })
-        .then (json => {
-            console.log(`Updated user balance after spin ${json.balance}`)
-            
+        .then (json => { 
         })
         .catch (error => {
             alert(`Error: ${error.statusText}`)
@@ -151,7 +145,6 @@ function getTransactions() {
         fetch(`http://localhost:3000/users/${user.id}`)
         .then(resp => resp.json())
         .then(json => {
-            console.log(json)
             displayTransactions(json)
         })
     } else {alert("Please log in to view transactions!")}

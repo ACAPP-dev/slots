@@ -64,7 +64,6 @@ function spinStart() {
         
         // Calculate win amount (if any)
         const winMultiplier = calcWin(winArry, winCodeArry)
-        console.log(`Win Multiplier: ${winMultiplier}`)
 
         // Generate array of images to be displayed in succession for each reel
         const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
@@ -99,22 +98,16 @@ function spinStart() {
 }
 
 function calcWin(winArry, winCodeArry) {
-    console.log(`Win Array: ${winArry}`)
-    console.log(`Win Code Array: ${winCodeArry}`)
-
     if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
         console.log('all elements match!')
         return 10
     } else if (winCodeArry.includes(1)) {
-        console.log('Includes at least 1 wincode of 1!')
         const numBarArry = winCodeArry.filter((el) => el === 1)
         if (numBarArry.length === 1) { return 2 }
         else if (numBarArry.length === 2) {return 5 }
     } else if (winCodeArry.every((el) => el === 2)) {
-        console.log('Includes 2s!')
         return 3
     } else if (winCodeArry.every((el) => el === 3)) {
-        console.log('Includes all 3s!')
         return 2
     } else { return 0}
 }
@@ -122,10 +115,6 @@ function calcWin(winArry, winCodeArry) {
 function createSpinArry(initialImage, winImage, spins) {
     const initialIndex = IMAGES.findIndex((image) => image.source === initialImage.source)
     const finalIndex = IMAGES.findIndex((image) => image.source === winImage.source)
-    
-    console.log(`Starting Image: ${initialImage.source}`)
-    console.log(`Win Image: ${winImage.source}`)
-    
     const returnArry = IMAGES.slice(initialIndex)
     
     for (let i=0; i<spins; i++) {

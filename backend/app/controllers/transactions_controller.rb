@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
     def create
-        # byebug
         user = User.find_by(username: params[:username])
 
         if user
@@ -11,7 +10,6 @@ class TransactionsController < ApplicationController
                 user.balance -= params[:amount]
             end
             if user.save
-                # byebug
                 render json: user.to_json(only: [:username, :balance])
             else
                 render json: {response: "Error - unable to process withdrawal"}, status: 406

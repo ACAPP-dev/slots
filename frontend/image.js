@@ -1,17 +1,13 @@
 
-
 const IMAGES = []
 
-
 // Define image object (each reel image will be an instance)
-
 class ReelImage {
     constructor(imageID, name, source, win_code) {
         this.imageID = imageID
         this.name = name
         this.source = `images/${source}`
         this.win_code = win_code
-        // debugger
         ReelImage.addImage(this)
     }
 
@@ -24,8 +20,9 @@ class ReelImage {
         img.src = this.source
         return img
     }
-
 }
+
+// Image Related Functions
 
 function fetchImages() {
     fetch(fetchImagesURL)
@@ -39,7 +36,6 @@ function createImages(json) {
     json.forEach(image => {
         new ReelImage(image['id'], image['name'], image['source'], image['win_code'])
     });
-    console.log(IMAGES)
     // invoke function to display initial images on reels
     displayImages()
 }
@@ -48,7 +44,6 @@ function createImages(json) {
 
 function generateRandom() {
     const max = IMAGES.length
-    // debugger
     return Math.floor(Math.random() * Math.floor(max))
 }
 
@@ -60,5 +55,4 @@ function displayImages() {
         img.src = initialImgArry[i].source
         reelArry[i].appendChild(img)
     }
-
 }

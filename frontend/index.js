@@ -97,7 +97,6 @@ function fixedBet(event) {
         }
         game.bet = fixedBet
         game.updateBet()
-        console.log(fixedBet)
     }
 }
 
