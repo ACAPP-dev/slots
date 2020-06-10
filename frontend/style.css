@@ -16,7 +16,7 @@ p {
 
 button {
     background-color: palegoldenrod;
-    
+    border-radius: 12px;
 }
 
 th {
@@ -148,7 +148,7 @@ img {
 
 #bottom {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto 190px auto auto;
     grid-template-rows: 135px 25px;
 
 }
@@ -159,7 +159,7 @@ img {
 }
 
 .bottom-divs-row2{
-    height: 35px;
+    height: 40px;
     border: solid 1px black;
     display: flex;
     justify-content: center;

@@ -48,6 +48,9 @@ function spinStart() {
             return alert("Make a deposit to continue playing!")
         }
 
+        game.updateWin()
+        slotMessage.innerText = 'Spinning!'
+
         game.balance -= game.bet
         game.updateBalance()
 
