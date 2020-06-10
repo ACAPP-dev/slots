@@ -27,7 +27,7 @@ class Game {
     }
 
     static numberFormat(number) {
-        const numArry = number.toString().split(".")
+        const numArry = Math.round(number).toString().split(".")
 
         numArry[0] = '$' + numArry[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         return numArry.join('.')
