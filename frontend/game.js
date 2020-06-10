@@ -30,7 +30,7 @@ class Game {
         balanceDisplay.innerText = '--'
         betDisplay.innerText = '--'
         winDisplay.innerText = '--'
-        
+
     }
 
     static numberFormat(number) {
@@ -42,4 +42,116 @@ class Game {
     }
 
     
+}
+
+function spinStart() {
+
+    if (game.balance <= game.bet) {
+        return alert("Make a deposit to continue playing!")
+    }
+
+    game.balance -= game.bet
+    game.updateBalance()
+
+    // Select final image for each reel
+    const winImg1 = IMAGES[generateRandom()]
+    const winImg2 = IMAGES[generateRandom()]
+    const winImg3 = IMAGES[generateRandom()]
+    const winArry = [winImg1.imageID, winImg2.imageID, winImg3.imageID]
+    const winCodeArry = [winImg1.win_code, winImg2.win_code, winImg3.win_code]
+    // Calculate win amount (if any)
+    const winMultiplier = calcWin(winArry, winCodeArry)
+    console.log(`Win Multiplier: ${winMultiplier}`)
+
+    // Generate array of images to be displayed in succession for each reel
+    const reel1SpinArry = createSpinArry(initialImgArry[0], winImg1, 1)
+    const reel2SpinArry = createSpinArry(initialImgArry[1], winImg2, 2)
+    const reel3SpinArry = createSpinArry(initialImgArry[2], winImg3, 3)
+    // debugger
+    // start spin in slot machine
+    spin(reelArry[0], reel1SpinArry)
+    spin(reelArry[1], reel2SpinArry)
+    spin(reelArry[2], reel3SpinArry)
+
+    // delay remaining function until spins are finished
+
+    window.setTimeout(()=> {
+        // add remaining function to display win
+        
+        const winAmount = game.bet * winMultiplier
+        // const newBalance = game.balance += winAmount
+        // debugger
+        game.updateBalance(winAmount)
+        game.updateWin(winAmount)
+
+        // update database with new user balance
+        user.balance = game.balance
+        updateUserBalance()
+
+        const playerMessageDiv = document.getElementById('messages')
+        const playerMessage = playerMessageDiv.querySelector('p')
+        playerMessage.innerText = `You won ${winMultiplier} X your bet!`
+
+        // Reset initial image array to winning images
+        initialImgArry[0] = winImg1
+        initialImgArry[1] = winImg2
+        initialImgArry[2] = winImg3
+
+
+    }, (reel3SpinArry.length + 2)*150, winMultiplier)  
+}
+
+function calcWin(winArry, winCodeArry) {
+    console.log(`Win Array: ${winArry}`)
+    console.log(`Win Code Array: ${winCodeArry}`)
+    // const sortedWinArry = winArry.sort().join()
+    
+    // console.log(`Sorted Win Array: ${sortedWinArry}`)
+
+    if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
+        console.log('all elements match!')
+        return 10
+    } else if (winCodeArry.includes(1)) {
+        console.log('Includes at least 1 wincode of 1!')
+        const numBarArry = winCodeArry.filter((el) => el === 1)
+        if (numBarArry.length === 1) { return 2 }
+        else if (numBarArry.length === 2) {return 5 }
+    } else if (winCodeArry.every((el) => el === 2)) {
+        console.log('Includes 2s!')
+        return 3
+    } else if (winCodeArry.every((el) => el === 3)) {
+        console.log('Includes all 3s!')
+        return 2
+    } else { return 0}
+    
+}
+
+function createSpinArry(initialImage, winImage, spins) {
+    const initialIndex = IMAGES.findIndex((image) => image.source === initialImage.source)
+    const finalIndex = IMAGES.findIndex((image) => image.source === winImage.source)
+    
+    console.log(`Starting Image: ${initialImage.source}`)
+    console.log(`Win Image: ${winImage.source}`)
+    
+    const returnArry = IMAGES.slice(initialIndex)
+    
+    for (let i=0; i<spins; i++) {
+        returnArry.push(...IMAGES)
+    }
+    returnArry.push(...IMAGES.slice(0, finalIndex + 1))
+
+    return returnArry
+}
+
+function spin(reel, imageArry) {
+    for (let i=0; i<imageArry.length; i++) {
+        window.setTimeout(()=> {
+            const reelImg = reel.querySelector('img')
+            reel.removeChild(reelImg)
+            const img = document.createElement('img')
+            img.src = imageArry[i].source
+            // reel1Img.classList.add('img-spin')
+            reel.appendChild(img)
+        }, (i + 1)*150)  
+    }
 }

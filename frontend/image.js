@@ -26,3 +26,39 @@ class ReelImage {
     }
 
 }
+
+function fetchImages() {
+    fetch(fetchImagesURL)
+    .then(resp => resp.json())
+    .then(json => {
+        createImages(json)
+    })
+}
+
+function createImages(json) {
+    json.forEach(image => {
+        new ReelImage(image['id'], image['name'], image['source'], image['win_code'])
+    });
+    console.log(IMAGES)
+    // invoke function to display initial images on reels
+    displayImages()
+}
+
+// Define function to generate random numbers for reels
+
+function generateRandom() {
+    const max = IMAGES.length
+    // debugger
+    return Math.floor(Math.random() * Math.floor(max))
+}
+
+function displayImages() {
+    // Display initial image on reels
+    for (let i=0; i<3; i++) {
+        const img = document.createElement('img')
+        initialImgArry.push(IMAGES[generateRandom()])
+        img.src = initialImgArry[i].source
+        reelArry[i].appendChild(img)
+    }
+
+}
