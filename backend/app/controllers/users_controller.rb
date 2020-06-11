@@ -7,7 +7,7 @@ class UsersController < ApplicationController
             session[:username] = params[:username]
             render json: user.to_json(only: [:id, :name, :username, :balance])
         else
-            render json: {response: "Unable to Create User!"}, status: 404
+            render json: {response: user.errors.messages.first}, status: 404
         end
     end
 

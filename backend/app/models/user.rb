@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :name, :username, presence: true
+    validates :username, uniqueness: true
 
     def self.last_5_transactions(user)
         user.transactions.last(5)
