@@ -39,6 +39,8 @@ newUserForm.addEventListener('submit', createUser)
 
 const fetchImagesURL = 'http://localhost:3000/images'
 
+const messageDiv = document.getElementById('messages-div')
+
 const winObject = []
 
 const container = document.getElementById('container')

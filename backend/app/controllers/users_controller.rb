@@ -7,7 +7,7 @@ class UsersController < ApplicationController
             session[:username] = params[:username]
             render json: user.to_json(only: [:id, :name, :username, :balance])
         else
-            render json: {error: "Unable to Create User!"}, status: not_permitted
+            render json: {response: "Unable to Create User!"}, status: 404
         end
     end
 
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         
             render json: trans.to_json(only: [:transaction_type, :amount, :created_at])
         else
-            render json: {error: "Unable to get transactions"}, status: 404
+            render json: {response: "Unable to get transactions"}, status: 404
         end
     end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
             user.update(balance: params[:balance])
             render json: user.to_json(only: [:username, :balance])
         else
-            render json: {error: "Unable to Update Balance!"}, status: 404
+            render json: {response: "Unable to Update Balance!"}, status: 404
         end
     end
 

@@ -20,18 +20,26 @@ function loginUser(event) {
     }
 
     fetch('http://localhost:3000/sessions', configObject)
-        .then (resp => {
-            if (!resp.ok) {
-                throw Error(resp.statusText)
-            } else {
-                return resp.json()}
-        })
+        .then (resp => resp.json())
         .then (json => {
-            makeUser(json)
+            if (json.response) {
+                loginForm.reset()
+                displayMessage(json.response, 'red')
+            } else {
+                makeUser(json)
+            }
         })
-        .catch (error => {
-            return console.log('error! ' + error)
-        })
+}
+
+function displayMessage(message, color) {
+    messageDiv.innerText = message
+    messageDiv.style.color = color
+    messageDiv.style.display = 'block'
+
+    setTimeout(()=>{
+        messageDiv.style.display = 'none'
+        messageDiv.innerText = ''
+    }, 5000)
 }
 
 function createUser(event) {
@@ -44,18 +52,14 @@ function createUser(event) {
     }
 
     fetch('http://localhost:3000/users', configObject)
-        .then (resp => {
-            if (!resp.ok) {
-                throw Error(resp.statusText)
-            } else {
-                return resp.json()}
-        })
+        .then (resp => resp.json())
         .then (json => {
-            makeUser(json)
-        })
-        .catch (error => {
-            alert(`Error: ${error.statusText}`)
-            return console.log('error! ' + error)
+            if (json.response) {
+                newUserForm.reset()
+                displayMessage(json.response, 'red')
+            } else {
+                makeUser(json)
+            }
         })
 }
 
@@ -81,12 +85,18 @@ function updateDisplay(user) {
     const loginDiv = document.getElementById('log-in-div')
     const newUserDiv = document.getElementById('new-user-div')
 
+    if (user && user.balance < 10) {
+        displayMessage('Login Successful! Use deposit button below to make a deposit!', 'black')
+    } else {
+        displayMessage('Login Successful!', 'green')
+    }
+
     loginBar.style.display = 'none'
     logoutBar.style.display = 'block'
     loginDiv.style.display = 'none'
     newUserDiv.style.display = 'none'
     loginForm.reset()
-    newUserForm.reset()  
+    newUserForm.reset()
 }
 
 function processTransaction(type, amount) {
@@ -97,22 +107,17 @@ function processTransaction(type, amount) {
     }
 
     fetch('http://localhost:3000/transactions', configObject)
-        .then (resp => {
-            if (!resp.ok) {
-                throw Error(resp.statusText)
-            } else {
-                return resp.json()}
-        })
+        .then (resp => resp.json())
         .then (json => {
-            user.balance = json.balance
-            game.balance = user.balance
-            game.updateBalance()
-            game.updateBet()
-            alert("Transaction Complete!")
-        })
-        .catch (error => {
-            alert(`Error: ${error.statusText}`)
-            return console.log('error! ' + error)
+            if (json.response) {
+                displayMessage('Unable to process transaction!', 'red')
+            } else {
+                displayMessage('Transaction successful!', 'green')
+                user.balance = json.balance
+                game.balance = user.balance
+                game.updateBalance()
+                game.updateBet()
+            }
         })
 }
 
@@ -126,17 +131,11 @@ function updateUserBalance() {
     }
 
     fetch(`http://localhost:3000/users/${user.id}`, configObject)
-        .then (resp => {
-            if (!resp.ok) {
-                throw Error(resp.statusText)
-            } else {
-                return resp.json()}
-        })
+        .then (resp => resp.json())
         .then (json => { 
-        })
-        .catch (error => {
-            alert(`Error: ${error.statusText}`)
-            return console.log('error! ' + error)
+            if (json.response) {
+                displayMessage('Error updating game balance!', 'red')
+            }
         })
 }
 

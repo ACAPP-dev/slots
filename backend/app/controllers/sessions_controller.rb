@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
                 session[:username] = params[:username]
                 render json: user.to_json(only: [:id, :name, :username, :balance])
             else
-                render json: {error: "Password does not match!"}, status: not_found
+                # byebug
+                render json: {response: "Password does not match!"}, status: 403
             end
         else
-            render json: {response: "Username not found"}, status: 404
+            render json: {response: "Username not found!"}, status: 404
         end
     end
 
