@@ -143,7 +143,7 @@ cashOut.addEventListener('click', () => {
         if (amount > 0 && amount <= user.balance) {
             processTransaction(2, amount)
         } else {
-            alert("Please enter valid withdrawal amount!")
+            alert('Please enter valid withdrawal amount!')
         }
     }
 })
@@ -158,6 +158,8 @@ deposit.addEventListener('click', () => {
 
     if (amount > 0) {
         processTransaction(1, amount)
+    } else {
+        alert('Please enter valid deposit amount!')
     }
 })
 
