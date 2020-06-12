@@ -70,6 +70,8 @@ reduceBet.addEventListener('click', changeBet)
 const increaseBet = document.getElementById('increase-bet')
 increaseBet.addEventListener('click', changeBet)
 
+const winSound = document.getElementById('win-sound')
+
 function changeBet(event) {
     const direction = event.target.id
 

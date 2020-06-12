@@ -82,6 +82,9 @@ function spinStart() {
             game.updateBalance(winAmount)
             game.updateWin(winAmount)
 
+            // Play sound if winning spin
+            if (winAmount > 0) {winSound.play()}
+
             // update database with new user balance
             user.balance = game.balance
             updateUserBalance()
@@ -99,12 +102,14 @@ function spinStart() {
 
 function calcWin(winArry, winCodeArry) {
     if (winArry[0] === winArry[1] && winArry[0] === winArry[2]) {
-        console.log('all elements match!')
         return 10
     } else if (winCodeArry.includes(1)) {
         const numBarArry = winCodeArry.filter((el) => el === 1)
-        if (numBarArry.length === 1) { return 2 }
-        else if (numBarArry.length === 2) {return 5 }
+        if (numBarArry.length === 1) { 
+            return 2 
+        } else if (numBarArry.length === 2) {
+            return 5
+        } 
     } else if (winCodeArry.every((el) => el === 2)) {
         return 3
     } else if (winCodeArry.every((el) => el === 3)) {

@@ -201,3 +201,7 @@ table {
     margin: 25px auto;
     table-layout: auto;
 }
+
+#win-sound {
+    display: none;
+}
