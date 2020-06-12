@@ -13,7 +13,7 @@ Play a 'realistic' slot machine using your browser.  This slot machine has much 
     <li>View payout table.</li>
 </ul>
 
-Please use the following link to see an overview of the webapp on YouTube: need
+Please use the following link to see an overview of the webapp on YouTube: https://youtu.be/9v5WjbOkbS4
 
 My blog also talks about this project here: need
 
@@ -32,7 +32,7 @@ Uses a Sqlite3 database.  To refresh or set up the database, use the following s
 
 Download the code for this webapp using:
 
-    $ git clone #need
+    $ git clone https://github.com/ACAPP-dev/slots.git
 
 Update Gem files using command:
 
@@ -72,4 +72,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](need).
+Everyone interacting in the project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ACAPP-dev/slots/blob/master/CODE_OF_CONDUCT.md).
