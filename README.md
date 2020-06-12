@@ -15,7 +15,7 @@ Play a 'realistic' slot machine using your browser.  This slot machine has much 
 
 Please use the following link to see an overview of the webapp on YouTube: https://youtu.be/9v5WjbOkbS4
 
-My blog also talks about this project here: need
+My blog also talks about this project here: https://acapp-dev.github.io/javascript_project_-_slot_machine
 
 ## Installation
 
@@ -72,4 +72,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ACAPP-dev/slots/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [Code of Conduct](https://github.com/ACAPP-dev/slots/blob/master/CODE_OF_CONDUCT.md).
