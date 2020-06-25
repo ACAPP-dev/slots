@@ -142,7 +142,7 @@ function updateUserBalance() {
 
 function getTransactions() {
     if (user) {
-        fetch(`http://localhost:3000/users/${user.id}`)
+        fetch(`http://localhost:3000/users/${user.id}/transactions`)
         .then(resp => resp.json())
         .then(json => {
             displayTransactions(json)
