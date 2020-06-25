@@ -154,12 +154,12 @@ deposit.addEventListener('click', () => {
 
     if (user) {
         amount = parseFloat(window.prompt('Enter deposit amount: ', '0'))
-    }
-
-    if (amount > 0) {
-        processTransaction(1, amount)
-    } else {
-        alert('Please enter valid deposit amount!')
+    
+        if (amount > 0) {
+            processTransaction(1, amount)
+        } else {
+            alert('Please enter valid deposit amount!')
+        }
     }
 })
 
