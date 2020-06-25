@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
 
     def create
-        if user = User.find_by(username: user_params[:username])
-            if user.authenticate(user_params[:password])
+        if @user = User.find_by(username: user_params[:username])
+            if @user.authenticate(user_params[:password])
                 session[:username] = params[:username]
-                render json: user.to_json(only: [:id, :name, :username, :balance])
+                render json: @user
             else
                 # byebug
                 render json: {response: "Password does not match!"}, status: 403

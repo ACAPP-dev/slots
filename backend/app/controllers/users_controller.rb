@@ -2,10 +2,10 @@ class UsersController < ApplicationController
     
     def create
         
-        user = User.new(user_params)
-        if user.save
+        @user = User.new(user_params)
+        if @user.save
             session[:username] = params[:username]
-            render json: user.to_json(only: [:id, :name, :username, :balance])
+            render json: @user
         else
             render json: {response: user.errors.messages.first}, status: 404
         end
@@ -13,19 +13,13 @@ class UsersController < ApplicationController
 
     def show
     
-        if user = User.find_by(id: params[:id])
-            trans = User.last_5_transactions(user)
         
-            render json: trans.to_json(only: [:transaction_type, :amount, :created_at])
-        else
-            render json: {response: "Unable to get transactions"}, status: 404
-        end
     end
 
     def update
-        if user = User.find_by(id: params[:id])
-            user.update(balance: params[:balance])
-            render json: user.to_json(only: [:username, :balance])
+        if @user = User.find_by(id: params[:id])
+            @user.update(balance: params[:balance])
+            render json: @user
         else
             render json: {response: "Unable to Update Balance!"}, status: 404
         end
