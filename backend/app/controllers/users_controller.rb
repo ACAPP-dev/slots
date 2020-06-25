@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     
     def create
-        
         @user = User.new(user_params)
         if @user.save
             session[:username] = params[:username]
@@ -12,8 +11,7 @@ class UsersController < ApplicationController
     end
 
     def show
-    
-        
+       
     end
 
     def update
