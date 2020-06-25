@@ -41,8 +41,6 @@ const fetchImagesURL = 'http://localhost:3000/images'
 
 const messageDiv = document.getElementById('messages-div')
 
-const winObject = []
-
 const container = document.getElementById('container')
 const playerMessage = document.getElementById('player-message')
 const btnSpin = document.getElementById('spin-button')

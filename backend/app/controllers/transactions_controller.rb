@@ -20,7 +20,18 @@ class TransactionsController < ApplicationController
     end
 
     def index
-
+        #byebug
+        if params[:user_id]
+            if user = User.find_by(id: params[:user_id])
+                @trans = User.last_5_transactions(user)
+            
+                render json: @trans # Using a serializer to render information
+            else
+                render json: {response: "Unable to get transactions"}, status: 404
+            end
+        else
+            render json: [response: "Must be logged in to get transactions"], status: 404
+        end
     end
 
     private

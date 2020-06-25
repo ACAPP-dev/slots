@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   resources :images, only: [:index]
   resources :users
+  
+  resources :users do
+    resources :transactions, only: [:index]
+  end
+
   resources :sessions, only: [:create, :destroy]
   resources :transactions, only: [:index, :create]
 
